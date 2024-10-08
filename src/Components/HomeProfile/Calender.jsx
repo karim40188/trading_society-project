@@ -1,6 +1,15 @@
 import { useState } from "react";
 import dayjs from "dayjs";
-import { Box, Button, Typography, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 
 const Calendar = () => {
@@ -11,7 +20,9 @@ const Calendar = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const daysInMonth = currentMonth.daysInMonth();
-  const daysArray = Array.from({ length: daysInMonth }, (_, index) => dayjs(currentMonth).date(index + 1));
+  const daysArray = Array.from({ length: daysInMonth }, (_, index) =>
+    dayjs(currentMonth).date(index + 1)
+  );
 
   const nextMonth = () => {
     setCurrentMonth(currentMonth.add(1, "month"));
@@ -78,15 +89,23 @@ const Calendar = () => {
             textTransform: "capitalize",
             backgroundColor: "#000",
             borderRadius: "5px",
-            letterSpacing: '-4%',
-            lineHeight: '16.71px',
+            letterSpacing: "-4%",
+            lineHeight: "16.71px",
           }}
         >
           Recorded Meeting
         </Button>
       </Box>
 
-      <Box sx={{ textAlign: "center", padding: "20px", color: "#fff", display: "flex", flexDirection: "column" }}>
+      <Box
+        sx={{
+          textAlign: "center",
+          padding: "20px",
+          color: "#fff",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -111,12 +130,26 @@ const Calendar = () => {
               sx={{
                 margin: "0 10px",
                 color: "#C3AD57",
+                width:"250px",
                 fontFamily: "Motken noqta ii",
                 fonSize: "30px",
+                position: "relative",
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: "100%",
+                  width: "100%",
+                  height: "10px",
+                  left: "0",
+                 background:'linear-gradient(90deg, #191919 57.89%, #856A30 100%)'
+                },
               }}
             >
               {currentMonth.format("MMMM")}{" "}
-              <Typography component="span" sx={{ color: "#fff", fontFamily: "Motken noqta ii" }}>
+              <Typography
+                component="span"
+                sx={{ color: "#fff", fontFamily: "Motken noqta ii" }}
+              >
                 {currentMonth.format("YYYY")}
               </Typography>
             </Typography>
@@ -139,15 +172,24 @@ const Calendar = () => {
           }}
         >
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <Typography sx={{ color: "#C3AD57", fontFamily: "Motken noqta ii", borderBottom: "1px solid #856A30" }} key={day}>
+            <Typography
+              sx={{
+                color: "#C3AD57",
+                fontFamily: "Motken noqta ii",
+                borderBottom: "1px solid #856A30",
+              }}
+              key={day}
+            >
               {day}
             </Typography>
           ))}
 
           {/* Empty spaces at the start */}
-          {Array.from({ length: currentMonth.startOf("month").day() }).map((_, index) => (
-            <Box key={index} sx={{ borderBottom: "1px solid #856A30" }}></Box>
-          ))}
+          {Array.from({ length: currentMonth.startOf("month").day() }).map(
+            (_, index) => (
+              <Box key={index} sx={{ borderBottom: "1px solid #856A30" }}></Box>
+            )
+          )}
 
           {/* Display days */}
           {daysArray.map((day) => (
@@ -163,12 +205,17 @@ const Calendar = () => {
                 width: "100%",
                 height: "100px",
                 transition: "background-color 0.3s",
-                backgroundColor: events[day.format("YYYY-MM-DD")] ? "#ffcccc" : "inherit",
+                backgroundColor: events[day.format("YYYY-MM-DD")]
+                  ? "#ffcccc"
+                  : "inherit",
                 "&:hover": { backgroundColor: "#C3AD57", color: "#000" },
               }}
               onClick={() => handleDateClick(day)}
             >
-              <Typography variant="body1" sx={{ fontFamily: "Clarendon", fontSize: "30px" }}>
+              <Typography
+                variant="body1"
+                sx={{ fontFamily: "Clarendon", fontSize: "30px" }}
+              >
                 {day.date()}
               </Typography>
               {events[day.format("YYYY-MM-DD")] && (
