@@ -57,6 +57,7 @@ function OurScanners() {
                 mb: "16px",
                 textAlign: { xs: "center", md: "left" },
                 color: "text.primary",
+                fontWeight:'700',
               }}
             >
               Our <br /> Scanners

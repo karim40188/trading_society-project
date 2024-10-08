@@ -103,9 +103,15 @@ function OurMobileApp() {
                       height: "70px",
                       borderRadius: "10px",
                       cursor: "pointer",
+                      transition:'all 700ms',
+                      "&:hover":{
+                        transform:'scale(1.1)'
+                      }
                     }}
                   >
-                    <Box sx={{ width: "50px", height: "50px" }}>
+                    <Box sx={{ width: "50px", height: "50px" ,
+                  
+                    }}>
                       <Box
                         component="img"
                         src={googlePlayIcon}
@@ -113,6 +119,8 @@ function OurMobileApp() {
                           width: "100%",
                           height: "100%",
                           backgroundSize: "contain",
+                       
+                        
                         }}
                       />
                     </Box>
@@ -137,6 +145,11 @@ function OurMobileApp() {
                       height: "70px",
                       borderRadius: "10px",
                       cursor: "pointer",
+                      transition:'all 1s',
+                 
+                      "&:hover":{
+                        transform:'scale(1.1)'
+                      }
                     }}
                   >
                     <FaApple style={{ fontSize: "45px", color: "#fff" }} />

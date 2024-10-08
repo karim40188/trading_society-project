@@ -16,13 +16,11 @@ function MissionAndVision() {
         sx={{
           flexDirection: { xs: "column", md: "row" },
           width: "91%",
-          mt:'180px'
-
+          mt: "180px",
         }}
       >
-
         {/* Mission Section */}
-        <Grid2 size={{ xs: 12, md: 6 }} >
+        <Grid2 size={{ xs: 12, md: 6 }}>
           <Box
             sx={{
               display: "flex",
@@ -56,16 +54,30 @@ function MissionAndVision() {
                   transform: { xs: "translateX(0)", md: "translateX(-60px)" },
                 }}
               >
-                <motion.img
-                  src={mission}
+                <Typography
+                  variant="body2"
                   sx={{
-                    width: "100%",
-                    height: "100%",
+                    width: "264px",
+                    // height: "100%",
+                    fontSize: "40px",
+                    textTransform: "capitalize",
+                    letterSpacing: "15px",
+                    lineHeight: "72.27px",
                   }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                />
+                >
+                  <Typography
+                    component="span"
+                    sx={{
+                      color: "#ecbc56",
+                      fontSize: "60px",
+                      letterSpacing: "15px",
+                      lineHeight: "72.27px",
+                    }}
+                  >
+                    M
+                  </Typography>
+                  ission
+                </Typography>
               </Box>
             </Box>
 
@@ -82,7 +94,6 @@ function MissionAndVision() {
                   xs: "translateX(0)",
                   md: "translate(140px, -70px)",
                 },
-              
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -98,7 +109,7 @@ function MissionAndVision() {
         </Grid2>
 
         {/* Vision Section */}
-        <Grid2 size={{ xs: 12, md: 6 }}>
+        <Grid2 size={{ xs: 12, md: 6 ,}} sx={{mt:'20px'}}>
           <Box
             sx={{
               display: "flex",
@@ -114,7 +125,7 @@ function MissionAndVision() {
                 mb: { xs: "20px", md: "40px" },
               }}
             >
-              <Box sx={{ width: "346px", height: "217px"}}>
+              <Box sx={{ width: "346px", height: "217px" }}>
                 <motion.img
                   src={visionImg}
                   sx={{ width: "100%", height: "100%" }}
@@ -171,7 +182,7 @@ function MissionAndVision() {
 
         {/* Decorative Images */}
 
-        <Box
+        {/* <Box
           sx={{
             width: {xs:"250px",md:"350px"},
             height: "350px",
@@ -218,7 +229,7 @@ function MissionAndVision() {
               backgroundPosition: "center",
             }}
           />
-        </Box>
+        </Box> */}
       </Grid2>
     </Box>
   );

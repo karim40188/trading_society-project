@@ -55,7 +55,7 @@ function Layout2() {
             </Box>
           </Box>
 
-          <Box>
+          <Box sx={{ml:sidebarOpen?'300px':"" }}>
             <FooterProfile />
           </Box>
         </Box>

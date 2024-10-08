@@ -26,7 +26,6 @@ function Sidebar() {
     { name: "Live Session", path: "/sessions", icon: <IoIosRadio /> },
     { name: "Leader Board", path: "/leaderboard", icon: <MdLeaderboard /> },
     { name: "Trade Alerts", path: "/tradealerts", icon: <FaExchangeAlt /> },
-    { name: "Scanners", path: "/scanners", icon: <FaExchangeAlt /> },
     { name: "Calenders", path: "/calender", icon: <SlCalender /> },
     { name: "News", path: "/news", icon: <LuNewspaper /> },
   ]);

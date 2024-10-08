@@ -10,6 +10,7 @@ function AboutUsText() {
       sx={{
         // marginBlock: "100px",
         paddingX: { xs: "20px", sm: "30px", md: "50px" },
+    
       
       }}
     >
