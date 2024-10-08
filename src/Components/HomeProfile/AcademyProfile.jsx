@@ -80,6 +80,16 @@ function AcademyProfile() {
             my: "30px",
             color: "#fff",
             transform: "translateX(15px)",
+            position:'relative',
+            "&::after": {
+              content: "''",
+              position: "absolute",
+              backgroundColor: "#ecbc56",
+              left: "0",
+              top: "100%",
+              width: "100%",
+              height: "3px",
+            },
           }}
         >
           Our{" "}
@@ -279,6 +289,7 @@ function AcademyProfile() {
                       top: "20px",
                       width: "120px",
                       height: "10px",
+                      
                     },
                   }}
                 >

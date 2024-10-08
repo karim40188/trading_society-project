@@ -15,9 +15,9 @@ import { DarkModeContext, TokenContext } from "../context/Context";
 import sideBar_img from "../../home_profile_assets/sidebar_img.png";
 
 function Sidebar() {
-  let [activeLink, setActiveLink] = useState(false);
   let { toggleMode } = useContext(DarkModeContext);
   let { sidebarOpen } = useContext(TokenContext);
+  let [activeLink, setActiveLink] = useState(false);
   let navigate = useNavigate();
 
   let [links] = useState([

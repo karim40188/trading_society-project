@@ -9,7 +9,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
 // import { DarkModeContext } from "../context/Context";
@@ -19,6 +19,8 @@ import branding from "../../assets/branding_name.png";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  let [activeLink, setActiveLink] = useState(false);
+  let navigate = useNavigate();
 
   const links = [
     { name: "HOME", path: "/home" },
@@ -152,9 +154,21 @@ function Navbar() {
                         },
                       },
                     }}
-                    // onClick={(e) => {
-                    //   e.target.classList.add("active-link");
-                    // }}
+                    onClick={(e) => {
+                      if (activeLink) {
+                        activeLink.classList.remove("active");
+                      }
+                    
+                      // إضافة العنصر الحالي كـ active
+                      const currentLink = e.currentTarget;
+                      currentLink.classList.add("active");
+                      setActiveLink(currentLink);
+                    
+                      // التوجيه للنقر
+                      navigate(`${link.path}`);
+                      window.scrollTo(0, 0);
+                    }}
+     
                   >
                     {link.name}
                   </Typography>

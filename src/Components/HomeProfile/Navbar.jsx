@@ -69,7 +69,7 @@ function Navbar() {
         <Box
           sx={{
             display: "flex",
-            gap: "5px", // تقليل المسافات بين الأيقونات
+            gap: "20px", // تقليل المسافات بين الأيقونات
             alignItems: "center",
           }}
         >
