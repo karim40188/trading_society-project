@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Grid, Divider } from "@mui/material";
 import logo from "../../assets/logo.png";
-import brand from "../../assets/brand.png";
+import brand from "../../home_profile_assets/brand.png";
 import instagramIcon from "../../assets/instagram.png";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";

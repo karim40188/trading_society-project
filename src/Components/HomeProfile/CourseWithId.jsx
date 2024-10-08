@@ -44,7 +44,7 @@ function CourseWithId() {
 
 
   return (
-    <Box sx={{ padding: 4 }}>
+    <Box sx={{ padding: 4, mx:'auto' }}>
       {/* تفاصيل الدورة */}
       <Card sx={{ display: "flex", marginBottom: 4, backgroundColor: "#000" }}>
         <CardMedia

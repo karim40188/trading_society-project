@@ -43,7 +43,7 @@ function Cards() {
         justifyContent: {
           xs: "center",
           md: "space-between",
-          gap: "40px",
+          gap: "10px",
         },
         alignItems: "flex-start", // Change to flex-start
       }}
@@ -59,7 +59,7 @@ function Cards() {
           flexDirection: "column",
           justifyContent: "center",
           overflow: "hidden",
-          backgroundColor: 'red',
+          // backgroundColor: 'red',
           mx: 'auto',
           boxShadow: 2, // Add some shadow for depth
         }}
@@ -118,7 +118,6 @@ function Cards() {
                 component="span"
                 sx={{
                   ml: "20px",
-                  color: "#",
                   fontWeight: "400",
                   color: "#ffffff",
                   fontSize: "30px",
@@ -140,8 +139,8 @@ function Cards() {
     borderRadius: "10px",
     padding: "5px",
     mx: 'auto',
-    width: '254px',
-    height: '315px',
+    width: '240px',
+    height: "330px",
     boxShadow: 2,
   }}
 >
@@ -198,8 +197,8 @@ function Cards() {
         sx={{
           background: "linear-gradient(34.82deg, #000000 48.98%, #665B2E 89.31%, #C3AD57 104.99%)",
           borderRadius: "15px",
-          width: sidebarOpen ? '400px' : '525px',
-          height: '315px',
+          width: sidebarOpen ? '380px' : '525px',
+          height: "330px",
           mx: 'auto',
           p: "20px",
           display: "flex",

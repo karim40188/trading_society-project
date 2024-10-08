@@ -1,33 +1,39 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { Box } from "@mui/material";
 
 function Test() {
-  //   let BASE_URL = `https://tradingsociety.net/api/v1`;
-  const fetchAllInstructors = async () => {
-    try {
-      const response = await axios.get(
-        `https://tradingsociety.net/api/v1/instructor`,
-        {
-          headers: {
-            Authorization:
-              "Bearer 7|ZbhS55oqdrDAk98VqWFBLZgdUOPPtiMkvsqg6SNMf3771c27",
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error("Error fetching instructors:", error);
-      throw error;
-    }
-  };
-
-
-
-
-  useEffect(() => {
-    fetchAllInstructors();
-  }, []);
-  return <div>Test</div>;
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          width: "430px",
+          height: "300px",
+          backgroundColor: "#3F3D3D",
+          position: "relative",
+        }}
+      >
+        <Box
+          sx={{
+            borderBottom: "50px solid #3F3D3D",
+            borderLeft: "50px solid transparent",
+            borderRight: "5px solid transparent",
+            height: "0",
+            width: "0px",
+            position: "absolute",
+            top: "-50px",
+            left: "0px",
+          }}
+        ></Box>
+      </Box>
+    </Box>
+  );
 }
 
 export default Test;

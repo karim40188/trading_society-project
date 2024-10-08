@@ -5,17 +5,16 @@ import BannerProfile from "./BannerProfile";
 
 function HomeProfile() {
   return (
-    <Box sx={{p:'20px',
-      width: "90%",
-      margin: "auto",
+    <Box sx={{
+
       display: "flex",
-      justifyContent: "start",
-      alignItems: "start",
+      // justifyContent: "start",
+      // alignItems: "start",
       flexDirection: "column",
 
     }}>
        <BannerProfile />
-       <Box sx={{marginTop:{xs:"80px",md:'100px',xl:"30px",},}}>
+       <Box sx={{marginTop:{xs:'10%',xl:'15%'}}}>
       <Cards  />
 
        </Box> 

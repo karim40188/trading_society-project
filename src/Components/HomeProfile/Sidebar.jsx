@@ -1,9 +1,7 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
 import imgBg from "../../home_profile_assets/img_bg.png";
 import profile_img from "../../home_profile_assets/profile_img.png";
-import lang_img from "../../home_profile_assets/lang.png";
-import mode_switcher_img from "../../home_profile_assets/mode_switch.png";
-import notification_img from "../../home_profile_assets/notification.png";
+
 import { useContext, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { GoMortarBoard } from "react-icons/go";
@@ -28,6 +26,7 @@ function Sidebar() {
     { name: "Live Session", path: "/sessions", icon: <IoIosRadio /> },
     { name: "Leader Board", path: "/leaderboard", icon: <MdLeaderboard /> },
     { name: "Trade Alerts", path: "/tradealerts", icon: <FaExchangeAlt /> },
+    { name: "Scanners", path: "/scanners", icon: <FaExchangeAlt /> },
     { name: "Calenders", path: "/calender", icon: <SlCalender /> },
     { name: "News", path: "/news", icon: <LuNewspaper /> },
   ]);
@@ -43,8 +42,11 @@ function Sidebar() {
           top: "0",
           bottom: "0",
           height: "100%", // ضمان أن الـ Sidebar يأخذ 100% من ارتفاع الشاشة بدون شريط تمرير
-          zIndex: "999999",
+          zIndex: "9999999",
           overflow: "hidden", // إخفاء أي محتوى زائد
+          transition: "transform 0.3s ease-in-out", // إضافة تأثير الانتقال
+          transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)", // إخفاء الشريط الجانبي عن طريق التحريك
+
         }}
       >
         <Box
@@ -53,31 +55,32 @@ function Sidebar() {
             zIndex: "-1",
             top: "-50px",
             width: "100%",
-            backgroundColor:'#ecbc56'
+            backgroundColor: "#ecbc56",
           }}
         >
-          <Box component="img" src={sideBar_img} sx={{ width: "100%", height: "100%" }} />
+          <Box
+            component="img"
+            src={sideBar_img}
+            sx={{ width: "100%", height: "100%" }}
+          />
         </Box>
 
         <Box
           sx={{
             backgroundImage: `url(${imgBg})`,
-            width: "250px", // تقليل عرض الصورة الخلفية
-            height: "100px", // تقليل ارتفاع الصورة الخلفية
+            width: "100%", // تقليل عرض الصورة الخلفية
+            height: "120px", // تقليل ارتفاع الصورة الخلفية
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             mt: "10px", // تقليل المسافة العلوية
             transform: "translateX(10px)", // تقليل المسافة الأفقية
             backgroundRepeat: "no-repeat",
-            
-         
-
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box component="img" src={profile_img} />
-            <Box sx={{ml:'10px'}}>
+            <Box sx={{ ml: "10px" }}>
               <Typography
                 sx={{
                   fontSize: "20px", // تقليل حجم الخط
@@ -95,7 +98,6 @@ function Sidebar() {
                   fontSize: "20px", // تقليل حجم الخط
                   fontWeight: "400",
                   letterSpacing: "-4%",
-                  
                 }}
               >
                 Id : 123456
@@ -105,34 +107,11 @@ function Sidebar() {
         </Box>
 
         <Box
-          sx={{
-            display: "flex",
-            gap: "5px", // تقليل المسافات بين الأيقونات
-            mt: "20px", // تقليل المسافة العلوية
-            width: "100%",
-            transform: "translateX(80px)", // تعديل المسافة الأفقية
-          }}
-        >
-          <Box component="img" src={lang_img} />
-          <Box component="img" src={mode_switcher_img} onClick={toggleMode} />
-          <Box component="img" src={notification_img} />
-        </Box>
-
-        <Divider
-          sx={{
-            marginTop: "8px", // تقليل المسافة العلوية
-            marginBottom: "8px", // تقليل المسافة السفلية
-            backgroundColor: "text.secondary",
-            width: "100%",
-          }}
-        />
-
-        <Box
           component="ul"
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "5px", // تقليل المسافات بين العناصر
+            gap: "10px", // تقليل المسافات بين العناصر
             zIndex: "99999",
             color: "#fff",
           }}
@@ -158,14 +137,22 @@ function Sidebar() {
                 onClick={(e) => {
                   if (activeLink) {
                     activeLink.classList.remove("active");
-                    navigate(`${link.path}`);
                   }
-
-                  e.currentTarget.classList.add("active");
-                  setActiveLink(e.target);
+                
+                  // إضافة العنصر الحالي كـ active
+                  const currentLink = e.currentTarget;
+                  currentLink.classList.add("active");
+                  setActiveLink(currentLink);
+                
+                  // التوجيه للنقر
+                  navigate(`${link.path}`);
+                  window.scrollTo(0, 0);
                 }}
+                
               >
-                <Box sx={{ fontSize: "24px", ml: "20px", color: "text.primary" }}>
+                <Box
+                  sx={{ fontSize: "24px", ml: "20px", color: "text.primary" }}
+                >
                   {link.icon}
                 </Box>
                 <Typography

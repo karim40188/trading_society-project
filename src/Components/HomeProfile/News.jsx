@@ -40,7 +40,7 @@ function News() {
     <Box sx={{ minHeight: "100vh" , color:"#000"}}>
       <BannerProfile />
 
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px", mt:'50px' }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px", mt:{xs:'50px',xl:"220px"} }}>
         {news.map((item, index) => {
           return (
             <Box

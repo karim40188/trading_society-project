@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useContext, useState, useEffect } from "react";
-import { DarkModeContext } from "../context/Context";
+import { useState, useEffect } from "react";
+// import { DarkModeContext } from "../context/Context";
 import logo from "../../assets/logo.png";
 import branding from "../../assets/branding_name.png";
 

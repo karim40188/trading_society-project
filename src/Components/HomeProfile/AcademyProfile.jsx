@@ -18,7 +18,6 @@ function AcademyProfile() {
   // let { token } = useContext(TokenContext);
 
   let [instructors, setInstructors] = useState([]); // لتخزين قائمة المدربين
-  let [isLoading, setIsLoading] = useState(false);
 
   let [instructorWithId, setInstructorWithId] = useState({});
   // جلب بيانات المدربين من الـ API
@@ -72,7 +71,6 @@ function AcademyProfile() {
         justifyContent: "start",
         alignItems: "start",
         flexDirection: "column",
-
       }}
     >
       <Box sx={{}}>
@@ -149,22 +147,29 @@ function AcademyProfile() {
           ))}
         </Box>
 
-        {/* تفاصيل المدرب المختار */}
         <Box
           ref={popUpRef}
           sx={{
             width: "770px",
-            minHeight: "900px",
-            backgroundImage: `url(${bgClickedEducator})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            px: "30px",
-            pt: "100px",
-            display: "none",
+            height: "auto",
+            backgroundColor: "#3F3D3D",
             position: "relative",
+            mt:'50px',
+            p:'30px',
+            display:'none'
           }}
         >
+          <Box
+            sx={{
+              borderBottom: "50px solid #3F3D3D",
+              borderLeft: "50px solid transparent",
+              borderRight: "5px solid transparent",
+
+              position: "absolute",
+              top: "-50px",
+              left: "0px",
+            }}
+          ></Box>
           <Box>
             <Box
               sx={{
@@ -224,8 +229,8 @@ function AcademyProfile() {
               <Box
                 sx={{
                   position: "absolute",
-                  top: "30px",
-                  right: "-10px",
+                  top: "10px",
+                  right: "0px",
                   fontSize: "30px",
                   color: "#fff",
                   cursor: "pointer",
@@ -411,6 +416,9 @@ function AcademyProfile() {
               )}
           </Box>
         </Box>
+
+        {/* تفاصيل المدرب المختار */}
+        <Box sx={{}}></Box>
 
         {/* جزء الـ Our Courses */}
         <OurCourses />
