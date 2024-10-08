@@ -1,7 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
-// بيانات ثابتة للمتداولين
+
+const Leaderboard = () => {
+
+
+  // بيانات ثابتة للمتداولين
 const traders = [
   { name: "Trader 1", score: 1500 },
   { name: "Trader 2", score: 1400 },
@@ -26,7 +30,6 @@ const itemVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
 };
 
-const Leaderboard = () => {
   return (
     <Box
       sx={{

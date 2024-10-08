@@ -26,7 +26,7 @@ import TradeAlertWithId from "./Components/HomeProfile/TradeAlertWithId";
 import OnlineSessions from "./Components/HomeProfile/OnlineSessions";
 import Categories from "./Components/HomeProfile/Categories";
 import FullScreenVideo from "./Components/HomeProfile/FullScreenVideo";
-import Leaderboard from "./Components/HomeProfile/LeaderBoard";
+import Leaderboard from "./Components/HomeProfile/Leaderboard";
 
 function App() {
   let { setLoading } = useContext(LoadingContext);
