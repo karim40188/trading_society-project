@@ -1,10 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import bgClickedEducator from "../../home_profile_assets/bg_clicked_educator.png";
 import OurCourses from "./OurCourses";
 import axios from "axios";
-// import { TokenContext } from "../context/Context";
 import person1 from "../../home_profile_assets/person4.png";
 import { IoMdTime } from "react-icons/io";
 import { FaPlay } from "react-icons/fa";
@@ -14,14 +12,10 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import { motion } from "framer-motion";
 
 function AcademyProfile() {
-  // let [instructorCourses, setInstructorCourses] = useState([]);
-  // let [categories, setCategories] = useState([]);
-  // let { token } = useContext(TokenContext);
-
-  let [instructors, setInstructors] = useState([]); // لتخزين قائمة المدربين
+  let [instructors, setInstructors] = useState([]);
   let [popup, setPopup] = useState(false);
   let [instructorWithId, setInstructorWithId] = useState({});
-  // جلب بيانات المدربين من الـ API
+
   async function getAllInstructors() {
     let res = await axios.get(`https://tradingsociety.net/api/v1/instructor`, {
       headers: {
@@ -29,10 +23,7 @@ function AcademyProfile() {
       },
     });
     setInstructors(res?.data?.instructors?.data);
-    console.log(res?.data?.instructors?.data);
   }
-
-  // let popUpRef = useRef(null);
 
   async function getInstructorCourses(id) {
     let res = await axios.get(
@@ -43,41 +34,41 @@ function AcademyProfile() {
         },
       }
     );
-
-    console.log(res?.data?.instructor_with_courses);
     setInstructorWithId(res?.data?.instructor_with_courses);
   }
 
   useEffect(() => {
-    getInstructorCourses();
     getAllInstructors();
   }, []);
+
   let navigate = useNavigate();
-  // عند الضغط على مدرب معين
+
   const handleInstructorClick = () => {
-    setPopup(true); // إظهار التفاصيل
+    setPopup(true);
   };
 
   const handleVideoClick = (videoUrl) => {
-    navigate(`/video/${encodeURIComponent(videoUrl)}`); // navigate to full screen page
+    navigate(`/video/${encodeURIComponent(videoUrl)}`);
   };
 
   return (
     <Box
       sx={{
         position: "relative",
-        width: "80%",
+        width: "100%",
+        maxWidth: "1200px",
         margin: "auto",
         display: "flex",
         justifyContent: "start",
         alignItems: "start",
         flexDirection: "column",
+        px: { xs: 2, md: 4 },
       }}
     >
-      <Box sx={{}}>
+      <Box>
         <Typography
           sx={{
-            fontSize: "33px",
+            fontSize: { xs: "24px", md: "33px" },
             my: "30px",
             color: "#fff",
             transform: "translateX(15px)",
@@ -99,64 +90,79 @@ function AcademyProfile() {
           </Typography>
         </Typography>
       </Box>
-      <Box sx={{ ml: "60px", position: "relative", zIndex: "999" }}>
-        <Box sx={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+
+      <Box
+        sx={{
+          ml: { xs: "20px", md: "60px" },
+          position: "relative",
+          zIndex: "999",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            gap: "10px",
+            flexWrap: "wrap",
+            justifyContent: { xs: "center", md: "flex-start" },
+          }}
+        >
           {instructors.map((educator, index) => (
             <Box
-              key={index}
+            key={index}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              padding: "20px",
+              border: "2px solid #ecbc56", // لون البرواز
+              borderRadius: "15px", // زوايا ناعمة
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)", // ظل ناعم
+              transition: "transform 0.3s ease, box-shadow 0.3s ease", // تأثير التحريك
+              backgroundColor: "#282828", // خلفية العنصر
+              "&:hover": {
+                transform: "scale(1.05)", // تكبير طفيف عند التمرير
+                boxShadow: "0 6px 30px rgba(0, 0, 0, 0.6)", // زيادة الظل عند التمرير
+              },
+            }}
+            onClick={() => {
+              getInstructorCourses(educator.id);
+              handleInstructorClick();
+            }} // عند الضغط على المدرب
+          >
+            <Box
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                padding: "20px",
-                border: "2px solid #ecbc56", // لون البرواز
-                borderRadius: "15px", // زوايا ناعمة
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)", // ظل ناعم
-                transition: "transform 0.3s ease, box-shadow 0.3s ease", // تأثير التحريك
-                backgroundColor: "#282828", // خلفية العنصر
-                "&:hover": {
-                  transform: "scale(1.05)", // تكبير طفيف عند التمرير
-                  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.6)", // زيادة الظل عند التمرير
-                },
+                width: "107px",
+                height: "107px",
+                borderRadius: "50%",
+                overflow: "hidden", // للتأكد من بقاء الصورة داخل الدائرة
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)", // ظل حول الصورة
               }}
-              onClick={() => {
-                getInstructorCourses(educator.id);
-                handleInstructorClick();
-              }} // عند الضغط على المدرب
             >
               <Box
                 sx={{
-                  width: "107px",
-                  height: "107px",
+                  width: "100%",
+                  height: "100%",
                   borderRadius: "50%",
-                  overflow: "hidden", // للتأكد من بقاء الصورة داخل الدائرة
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)", // ظل حول الصورة
                 }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                  }}
-                  component="img"
-                  src={educator.Instructor_image}
-                  alt={educator.Instructor_name}
-                />
-              </Box>
-              <Typography
-                sx={{
-                  color: "#fff", // تغيير لون النص
-                  fontWeight: "bold", // جعل الاسم بارزًا
-                  fontSize: "1rem",
-                }}
-              >
-                {educator.Instructor_name}
-              </Typography>
+                component="img"
+                src={educator.Instructor_image}
+                alt={educator.Instructor_name}
+              />
             </Box>
+            <Typography
+              sx={{
+                color: "#fff", // تغيير لون النص
+                fontWeight: "bold", // جعل الاسم بارزًا
+                fontSize: "1rem",
+              }}
+            >
+              {educator.Instructor_name}
+            </Typography>
+          </Box>
+          
           ))}
         </Box>
 
@@ -169,7 +175,7 @@ function AcademyProfile() {
           >
             <Box
               sx={{
-                width: { xs: "90%", sm: "600px", md: "800px", lg: "1000px" }, // زيادة العرض ليكون أكثر ملاءمة
+                width: { xs: "90%", sm: "600px", md: "770px" }, // يستجيب لحجم الشاشة
                 height: "auto",
                 backgroundColor: "#3F3D3D",
                 position: "relative",
@@ -463,25 +469,6 @@ function AcademyProfile() {
         ) : (
           ""
         )}
-
-        {/* تفاصيل المدرب المختار */}
-        <Box sx={{}}></Box>
-
-        {/* جزء الـ Our Courses */}
-        <OurCourses />
-      </Box>
-
-      <Box
-        sx={{
-          position: "absolute",
-          // transform: "translateY(-300px)",
-          right: "0",
-          transform: "translateY(-400px)",
-          width: "10%",
-          zIndex: "1",
-        }}
-      >
-        <Box component="img" src={decorationImg} sx={{ width: "100%" }} />
       </Box>
     </Box>
   );

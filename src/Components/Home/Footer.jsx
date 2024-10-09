@@ -114,7 +114,7 @@ const handleSubmit = async () => {
             transform:{lg:"translate(-60px,-30px)"}
           }}
         >
-          <Box component="img" src={logo} sx={{ mb: { xs: 2, md: 0 } }} />
+          <Box component="img" src={logo} sx={{ mb: { xs: 2, md: 0 } , width:'69px', height:'69px'}} />
           <Box
             component="img"
             src={brand}
