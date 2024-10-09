@@ -55,14 +55,16 @@ function Navbar() {
           height: "80px",
           borderRadius: scrolling ? "15px" : "15px",
           zIndex: 999900,
-          transition: "500ms all ease",
+          transition: "300ms all ease",
           mx: "auto",
           mb: scrolling ? "0" : "30px",
           backdropFilter: "blur(15.699999809265137px)",
           display: "flex",
           justifyContent: "center",
-          transform: scrolling ? "translateX(-50%)" : "0",
-          left: scrolling ? "50%" : "",
+          transform: scrolling ? "translateX(-4%)" : "0",
+          top:'0',
+          // left: scrolling ? "50%" : "",
+          // left:'50%'
         }}
       >
         <Toolbar
