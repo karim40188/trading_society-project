@@ -46,7 +46,7 @@ function CourseWithId() {
   return (
     <Box sx={{ padding: 4, mx:'auto' }}>
       {/* تفاصيل الدورة */}
-      <Card sx={{ display: "flex", marginBottom: 4, backgroundColor: "#000" }}>
+      <Card sx={{ display: "flex", marginBottom: 4, backgroundColor: "transparent" }}>
         <CardMedia
           component="img"
           sx={{ width: 300 }}
@@ -80,7 +80,7 @@ function CourseWithId() {
         {course?.course_vedios?.map((video) => (
           <Grid2 item xs={12} sm={6} md={4} key={video?.id}>
             <Card
-              sx={{ cursor: "pointer", backgroundColor: "#fff" }}
+              sx={{ cursor: "pointer", backgroundColor: "transparent" }}
               onClick={() => handleVideoClick(video?.video_url)}
             >
               <Box sx={{ position: "relative" }}>
@@ -92,7 +92,7 @@ function CourseWithId() {
                     width: "100%",
                     height: "200px",
                     objectFit: "cover",
-                    borderRadius: "8px",
+                    // borderRadius: "8px",
                   }}
                 />
                 {/* Play button overlay */}
@@ -120,7 +120,7 @@ function CourseWithId() {
                   />
                 </Box>
               </Box>
-              <CardContent sx={{ backgroundColor: "#000", padding: "16px" }}>
+              <CardContent sx={{ backgroundColor: "transparent", padding: "16px" }}>
                 <Typography variant="h6" sx={{ color: "#fff" }}>
                   {video?.course_name}
                 </Typography>

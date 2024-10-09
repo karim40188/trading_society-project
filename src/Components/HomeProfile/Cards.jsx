@@ -197,7 +197,7 @@ function Cards() {
         sx={{
           background: "linear-gradient(34.82deg, #000000 48.98%, #665B2E 89.31%, #C3AD57 104.99%)",
           borderRadius: "15px",
-          width: {xs:'80%',md:'525px'} ,
+          width: {xs:'80%',md:'450px'} ,
           height: "330px",
           mx: 'auto',
           p: "20px",
