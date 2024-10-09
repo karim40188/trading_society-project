@@ -37,7 +37,7 @@ function Sidebar() {
         sx={{
           width: "302px",
           position: "fixed",
-          display: { xs: sidebarOpen ? 'block' : 'none', md: 'block' }, // يظهر على الشاشات الصغيرة فقط إذا كانت sidebarOpen = true
+          display: { xs: sidebarOpen ? "block" : "none", md: "block" }, // يظهر على الشاشات الصغيرة فقط إذا كانت sidebarOpen = true
           top: "0",
           bottom: "0",
           height: "100%", // ضمان أن الـ Sidebar يأخذ 100% من ارتفاع الشاشة بدون شريط تمرير
@@ -45,13 +45,20 @@ function Sidebar() {
           overflow: "hidden", // إخفاء أي محتوى زائد
           transition: "transform 0.3s ease-in-out", // إضافة تأثير الانتقال
           transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)", // إخفاء الشريط الجانبي عن طريق التحريك
-          backgroundColor:'black'
-
+          backgroundColor: "black",
         }}
       >
-
-
-        <Box sx={{backgroundColor:'black',width:'100%',height:'50px',position:'absolute',bottom:'250px',left:'0'}}></Box>
+        <Box
+          sx={{
+            backgroundColor: "black",
+            width: "100%",
+            height: "50px",
+            position: "absolute",
+            bottom: sidebarOpen ? { xs: "250px", md: "0" } : "0",
+            left: "0",
+            display: sidebarOpen ? { xs: "block" ,md:"none"} : "none",
+          }}
+        ></Box>
         <Box
           sx={{
             position: "absolute",
@@ -79,7 +86,6 @@ function Sidebar() {
             mt: "10px", // تقليل المسافة العلوية
             transform: "translateX(10px)", // تقليل المسافة الأفقية
             backgroundRepeat: "no-repeat",
-
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -142,17 +148,16 @@ function Sidebar() {
                   if (activeLink) {
                     activeLink.classList.remove("active");
                   }
-                
+
                   // إضافة العنصر الحالي كـ active
                   const currentLink = e.currentTarget;
                   currentLink.classList.add("active");
                   setActiveLink(currentLink);
-                
+
                   // التوجيه للنقر
                   navigate(`${link.path}`);
                   window.scrollTo(0, 0);
                 }}
-                
               >
                 <Box
                   sx={{ fontSize: "24px", ml: "20px", color: "text.primary" }}

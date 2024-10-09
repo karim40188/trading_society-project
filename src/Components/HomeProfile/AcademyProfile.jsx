@@ -102,59 +102,63 @@ let [popup,setPopup]=useState(false)
       <Box sx={{ ml: "60px", position: "relative", zIndex: "999" }}>
         <Box sx={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
           {instructors.map((educator, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                padding: "20px",
-                border: "1px solid black",
-                borderRadius: "15px", // Soft rounded corners
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
-                transition: "transform 0.3s ease", // Animation effect
-                "&:hover": {
-                  transform: "scale(1.05)", // Slightly enlarge on hover
-                },
-              }}
-              onClick={() => {
-                getInstructorCourses(educator.id);
-                handleInstructorClick();
-              }} // عند الضغط على المدرب
-            >
-              <Box
-                sx={{
-                  width: "107px",
-                  height: "107px",
-                  borderRadius: "50%",
-                  overflow: "hidden", // To ensure image stays inside the circle
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)", // Shadow around the image
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                  }}
-                  component="img"
-                  src={educator.Instructor_image}
-                  alt={educator.Instructor_name}
-                />
-              </Box>
-              <Typography
-                sx={{
-                  //  color: "text.primary",
-                  fontWeight: "bold", // Make the name stand out
-                  fontSize: "1rem",
-                }}
-              >
-                {educator.Instructor_name}
-              </Typography>
-            </Box>
+       <Box
+       key={index}
+       sx={{
+         display: "flex",
+         flexDirection: "column",
+         gap: "5px",
+         justifyContent: "center",
+         alignItems: "center",
+         cursor: "pointer",
+         padding: "20px",
+         border: "2px solid #ecbc56", // لون البرواز
+         borderRadius: "15px", // زوايا ناعمة
+         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)", // ظل ناعم
+         transition: "transform 0.3s ease, box-shadow 0.3s ease", // تأثير التحريك
+         backgroundColor: "#282828", // خلفية العنصر
+         "&:hover": {
+           transform: "scale(1.05)", // تكبير طفيف عند التمرير
+           boxShadow: "0 6px 30px rgba(0, 0, 0, 0.6)", // زيادة الظل عند التمرير
+         },
+       }}
+       onClick={() => {
+         getInstructorCourses(educator.id);
+         handleInstructorClick();
+       }} // عند الضغط على المدرب
+     >
+       <Box
+         sx={{
+           width: "107px",
+           height: "107px",
+           borderRadius: "50%",
+           overflow: "hidden", // للتأكد من بقاء الصورة داخل الدائرة
+           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)", // ظل حول الصورة
+         }}
+       >
+         <Box
+           sx={{
+             width: "100%",
+             height: "100%",
+             borderRadius: "50%",
+           }}
+           component="img"
+           src={educator.Instructor_image}
+           alt={educator.Instructor_name}
+         />
+       </Box>
+       <Typography
+         sx={{
+           color: "#fff", // تغيير لون النص
+           fontWeight: "bold", // جعل الاسم بارزًا
+           fontSize: "1rem",
+         }}
+       >
+         {educator.Instructor_name}
+       </Typography>
+     </Box>
+     
+         
           ))}
         </Box>
 

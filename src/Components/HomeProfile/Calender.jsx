@@ -46,19 +46,27 @@ const Calendar = () => {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        padding: { xs: "10px", md: "20px" }, // تحسين الحشوة على الشاشات الصغيرة
+        color: "#fff",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", md: "row" }, // تغيير الاتجاه على الشاشات الصغيرة
           alignItems: "center",
           gap: "10px",
           fontSize: "14px",
           fontFamily: "SF Pro Display",
+          mb: 2,
         }}
       >
         <Button
           sx={{
-            width: "106px",
+            width: "100%",
+            maxWidth: "106px", // تحديد أقصى عرض
             height: "36px",
             background: "linear-gradient(90deg, #C3AD57 0%, #5D5329 100%)",
             color: "#fff",
@@ -70,7 +78,8 @@ const Calendar = () => {
         </Button>
         <Button
           sx={{
-            width: "106px",
+            width: "100%",
+            maxWidth: "106px", // تحديد أقصى عرض
             height: "36px",
             color: "#fff",
             fontSize: "14px",
@@ -83,7 +92,8 @@ const Calendar = () => {
         </Button>
         <Button
           sx={{
-            width: "140px",
+            width: "100%",
+            maxWidth: "140px", // تحديد أقصى عرض
             height: "36px",
             color: "#fff",
             textTransform: "capitalize",
@@ -101,7 +111,6 @@ const Calendar = () => {
         sx={{
           textAlign: "center",
           padding: "20px",
-          color: "#fff",
           display: "flex",
           flexDirection: "column",
         }}
@@ -130,9 +139,9 @@ const Calendar = () => {
               sx={{
                 margin: "0 10px",
                 color: "#C3AD57",
-                width:"250px",
+                width: "250px",
                 fontFamily: "Motken noqta ii",
-                fonSize: "30px",
+                fontSize: { xs: "20px", md: "30px" }, // حجم النص استجابة
                 position: "relative",
                 "&::after": {
                   content: '""',
@@ -141,7 +150,7 @@ const Calendar = () => {
                   width: "100%",
                   height: "10px",
                   left: "0",
-                 background:'linear-gradient(90deg, #191919 57.89%, #856A30 100%)'
+                  background: 'linear-gradient(90deg, #191919 57.89%, #856A30 100%)',
                 },
               }}
             >
@@ -177,6 +186,7 @@ const Calendar = () => {
                 color: "#C3AD57",
                 fontFamily: "Motken noqta ii",
                 borderBottom: "1px solid #856A30",
+                textAlign: "center", // محاذاة النص إلى المركز
               }}
               key={day}
             >
@@ -214,7 +224,7 @@ const Calendar = () => {
             >
               <Typography
                 variant="body1"
-                sx={{ fontFamily: "Clarendon", fontSize: "30px" }}
+                sx={{ fontFamily: "Clarendon", fontSize: { xs: "20px", md: "30px" } }} // حجم النص استجابة
               >
                 {day.date()}
               </Typography>

@@ -24,13 +24,14 @@ function Navbar() {
         backgroundColor: darkMode ? "#000" : "#6B5B3D",
         width: sidebarOpen ? { xs: "100%", md: "calc(100% - 300px)" } : "100%",
         left: sidebarOpen ? { xs: 0, md: "300px" } : "0",
-        height: "80px",  // تقليل الارتفاع على الشاشات الصغيرة
+        height: "80px",
         position: "fixed",
         top: 0,
         zIndex: "9999",
         display: "flex",
         alignItems: "center",
         paddingX: { xs: "10px", md: "20px" },
+        transition: "background-color 0.3s ease", // إضافة تأثير عند تغيير الخلفية
       }}
     >
       <Box
@@ -45,13 +46,17 @@ function Navbar() {
             display: "flex",
             alignItems: "center",
             cursor: "pointer",
+            transition: "transform 0.3s ease", // إضافة تأثير تكبير عند التمرير
+            "&:hover": {
+              transform: "scale(1.05)", // تكبير عند التمرير
+            },
           }}
           onClick={() => {
             navigate("/");
           }}
         >
-          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "50px" }, width: 'auto' }} />
-          <Box component="img" src={brand} sx={{ height: { xs: "40px", md: "50px" }, ml: { xs: 1, md: 2 }, width: 'auto' }} />
+          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "80px" }, width: '80px' ,mb:'10px'}} />
+          <Box component="img" src={brand} sx={{ height: { xs: "40px", md: "50px" }, ml: { xs: 1, md: 2 }, width: 'auto' ,mt:'6px'}} />
         </Box>
       </Box>
 
@@ -61,8 +66,8 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           position: "absolute",
-          flexDirection:{xs:'row-reverse',md:'row'},
-          right: "60px", 
+          flexDirection: { xs: 'row-reverse', md: 'row' },
+          right: "60px",
           gap: { xs: "10px", md: "15px" },
         }}
       >
@@ -70,15 +75,19 @@ function Navbar() {
         <Box
           sx={{
             display: "flex",
-            gap: { xs: "10px", md: "20px" }, 
+            gap: { xs: "10px", md: "20px" },
             alignItems: "center",
           }}
         >
-          <Box component="img" src={lang_img} sx={{ width: { xs: "20px", md: "30px" } }} />
-          <div style={{ cursor: 'pointer' }} onClick={toggleMode}>
-            {darkMode ? <MdLightMode style={{ color: "#ecbc56", fontSize: "20px" }} /> : <MdDarkMode />}
+          <Box component="img" src={lang_img} sx={{ width: { xs: "20px", md: "30px" }, transition: "transform 0.3s ease" }} />
+          <div style={{ cursor: 'pointer', transition: "color 0.3s ease" }} onClick={toggleMode}>
+            {darkMode ? (
+              <MdLightMode style={{ color: "#ecbc56", fontSize: "20px", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
+            ) : (
+              <MdDarkMode style={{ fontSize: "20px", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
+            )}
           </div>
-          <IoMdNotifications style={{ color: "#ecbc56", fontSize: '20px' }} />
+          <IoMdNotifications style={{ color: "#ecbc56", fontSize: '20px', transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
         </Box>
 
         {/* الـ menu */}
@@ -90,7 +99,10 @@ function Navbar() {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
-          
+            transition: "transform 0.3s ease", // إضافة تأثير تكبير عند التمرير
+            "&:hover": {
+              transform: "scale(1.1)", // تكبير عند التمرير
+            },
           }}
         >
           <CiMenuBurger />

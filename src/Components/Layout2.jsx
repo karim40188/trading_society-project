@@ -46,7 +46,7 @@ function Layout2() {
                 width: sidebarOpen ? "75%" : "90%",
                 mx: "auto",
                 position: "relative",
-                left: sidebarOpen ? { xs: "49%", xl: "45%" }:{xs:"10%",md:'45%'},
+                left: sidebarOpen ? { xs: "49%", xl: "45%" }:{xs:"5%",md:'45%'},
                 transform: {xs:'none',md:"translateX(-50%)"},
                 transition: "width 0.3s ease",
                
@@ -56,7 +56,7 @@ function Layout2() {
             </Box>
           </Box>
 
-          <Box sx={{ml:sidebarOpen?{xs:'0',md:'300px'}:"0" }}>
+          <Box sx={{ml:sidebarOpen?{md:'300px'}:"" }}>
             <FooterProfile />
           </Box>
         </Box>

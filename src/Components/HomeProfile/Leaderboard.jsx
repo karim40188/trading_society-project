@@ -42,6 +42,7 @@ const Leaderboard = () => {
         display: "flex",
         flexWrap: "wrap", // تسمح للعناصر بالتفاف
         justifyContent: "center", // توزيع العناصر بالتساوي
+        
       }}
     >
       <Typography
@@ -64,6 +65,7 @@ const Leaderboard = () => {
         style={{
           display: "flex",
           flexWrap: "wrap",
+          justifyContent:'center',
           gap: "15px", // المسافة بين المربعات
           width: "100%", // تأكد أن العنصر يأخذ عرض كامل
 
