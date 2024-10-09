@@ -32,31 +32,34 @@ function Layout2() {
           </span>
         </Box>
       ) : (
-        <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+        <Box sx={{ display: "flex", flexDirection: "column",  }}>
           <Navbar />
 
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", flexGrow: 1 }}>
             <Box sx={{ flexShrink: 0 }}>
               <Sidebar />
             </Box>
 
             <Box
               sx={{
-                py: "10%",
-                width: sidebarOpen ? "75%" : "90%",
+                // pt: { xs: "20px", md: "10%" },
+                width: sidebarOpen ? { xs: "100%", md: "75%" } : { xs: "100%", md: "90%" },
+                pt:{xs:'25%',md:'8%'},
+                px:'20px',
                 mx: "auto",
-                position: "relative",
-                left: sidebarOpen ? { xs: "49%", xl: "45%" }:{xs:"5%",md:'45%'},
-                transform: {xs:'none',md:"translateX(-50%)"},
                 transition: "width 0.3s ease",
-               
+                position: "relative",
+                left: sidebarOpen ? { xs: "0", xl: "0" } : {xs:'50%', md: "46%" },
+                
+                transform: { xs: "translateX(-50%)", md: "translateX(-50%)" },
+                // padding:'10px'
               }}
             >
               <Outlet />
             </Box>
           </Box>
 
-          <Box sx={{ml:sidebarOpen?{md:'300px'}:"" }}>
+          <Box sx={{ ml: { xs: "0", md: sidebarOpen ? "300px" : "0" }, mt: "20px" }}>
             <FooterProfile />
           </Box>
         </Box>

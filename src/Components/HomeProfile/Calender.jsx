@@ -48,7 +48,7 @@ const Calendar = () => {
   return (
     <Box
       sx={{
-        padding: { xs: "10px", md: "20px" }, // تحسين الحشوة على الشاشات الصغيرة
+        padding: { xs: "5px", md: "20px" }, // تحسين الحشوة على الشاشات الصغيرة
         color: "#fff",
       }}
     >
@@ -57,7 +57,7 @@ const Calendar = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" }, // تغيير الاتجاه على الشاشات الصغيرة
           alignItems: "center",
-          gap: "10px",
+          gap: "5px",
           fontSize: "14px",
           fontFamily: "SF Pro Display",
           mb: 2,
@@ -72,6 +72,7 @@ const Calendar = () => {
             color: "#fff",
             textTransform: "capitalize",
             borderRadius: "5px",
+            fontSize: { xs: "12px", md: "14px" },
           }}
         >
           Calendar
@@ -82,7 +83,7 @@ const Calendar = () => {
             maxWidth: "106px", // تحديد أقصى عرض
             height: "36px",
             color: "#fff",
-            fontSize: "14px",
+            fontSize: { xs: "12px", md: "14px" },
             textTransform: "capitalize",
             backgroundColor: "#000",
             borderRadius: "5px",
@@ -96,11 +97,10 @@ const Calendar = () => {
             maxWidth: "140px", // تحديد أقصى عرض
             height: "36px",
             color: "#fff",
+            fontSize: { xs: "12px", md: "14px" },
             textTransform: "capitalize",
             backgroundColor: "#000",
             borderRadius: "5px",
-            letterSpacing: "-4%",
-            lineHeight: "16.71px",
           }}
         >
           Recorded Meeting
@@ -121,7 +121,7 @@ const Calendar = () => {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "20px",
-            gap: "30px",
+            gap: { xs: "10px", md: "30px" }, // تصغير الفجوات على الشاشات الأصغر
           }}
         >
           <IoMdArrowDropleft
@@ -139,9 +139,10 @@ const Calendar = () => {
               sx={{
                 margin: "0 10px",
                 color: "#C3AD57",
-                width: "250px",
+                width: { xs: "150px", md: "250px" }, // تحسين العرض على الشاشات الصغيرة
+                maxHeight:'80px',
                 fontFamily: "Motken noqta ii",
-                fontSize: { xs: "20px", md: "30px" }, // حجم النص استجابة
+                fontSize: { xs: "18px", md: "25px" }, // حجم النص استجابة
                 position: "relative",
                 "&::after": {
                   content: '""',
@@ -175,7 +176,7 @@ const Calendar = () => {
             display: "grid",
             gridTemplateColumns: "repeat(7, 1fr)",
             justifyContent: "center",
-            mt: "30px",
+            mt: "20px", // تصغير التباعد العلوي للشاشات الأصغر
             border: "1px solid #856A30",
             borderCollapse: "collapse",
           }}
@@ -186,7 +187,8 @@ const Calendar = () => {
                 color: "#C3AD57",
                 fontFamily: "Motken noqta ii",
                 borderBottom: "1px solid #856A30",
-                textAlign: "center", // محاذاة النص إلى المركز
+                textAlign: "center",
+                fontSize: { xs: "12px", md: "14px" }, // حجم النص استجابة
               }}
               key={day}
             >
@@ -213,7 +215,7 @@ const Calendar = () => {
                 cursor: "pointer",
                 position: "relative",
                 width: "100%",
-                height: "100px",
+                height: { xs: "60px", md: "100px" }, // ضبط الارتفاع للشاشات الصغيرة
                 transition: "background-color 0.3s",
                 backgroundColor: events[day.format("YYYY-MM-DD")]
                   ? "#ffcccc"
@@ -224,7 +226,7 @@ const Calendar = () => {
             >
               <Typography
                 variant="body1"
-                sx={{ fontFamily: "Clarendon", fontSize: { xs: "20px", md: "30px" } }} // حجم النص استجابة
+                sx={{ fontFamily: "Clarendon", fontSize: { xs: "16px", md: "30px" } }} // حجم النص استجابة
               >
                 {day.date()}
               </Typography>

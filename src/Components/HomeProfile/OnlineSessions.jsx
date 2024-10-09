@@ -11,12 +11,16 @@ function OnlineSessions() {
   return (
     <Box
       sx={{
-        p: 2,
+        pl: 4,
         backgroundColor: "#191919",
         minHeight: "100vh",
         posiiton: "relative",
         display: "flex",
         justfiyContent: "center",
+        
+       
+   
+
       }}
     >
       <Box
@@ -25,7 +29,8 @@ function OnlineSessions() {
           position: "relative",
           display:'flex',
           gap:'20px',
-          flexWrap:'wrap'
+          flexWrap:'wrap',
+      
 
           // width: "50%",
     
@@ -39,6 +44,8 @@ function OnlineSessions() {
             width: "272px",
             height: "417px",
             position:'relative',
+            
+        
           }}
         >
           <CardMedia

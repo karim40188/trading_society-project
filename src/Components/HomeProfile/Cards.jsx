@@ -1,4 +1,4 @@
-import { Box, Divider, Grid2, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import imgBg from "../../home_profile_assets/img_bg.png";
 import { useContext, useState } from "react";
 import googlePlay from "../../home_profile_assets/googleplay.png";
@@ -34,248 +34,231 @@ function Cards() {
   ]);
 
   return (
-    <Grid2
+    <Grid
       container
       spacing={2}
       sx={{
-        position: "relative",
-        display: "hidden",
-        justifyContent: {
-          xs: "center",
-          md: "space-between",
-          gap: "10px",
-        },
-        alignItems: "flex-start", // Change to flex-start
+        justifyContent: { xs: "center", md: "space-between" },
+        alignItems: "flex-start",
       }}
     >
       {/* الكارت الأول */}
-      <Grid2
-        sx={{
-          position: "relative",
-          width: "300px",
-          height: "330px",
-          borderRadius: "10px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          overflow: "hidden",
-          // backgroundColor: 'red',
-          mx: 'auto',
-          boxShadow: 2, // Add some shadow for depth
-        }}
-      >
+      <Grid item xs={12} sm={6} md={4}>
         <Box
           sx={{
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(${imgBg})`,
-            backgroundSize: "cover",
-            objectFit: "cover",
+            position: "relative",
+            borderRadius: "10px",
+            overflow: "hidden",
+            boxShadow: 2,
+            mx: 'auto',
+            height: "330px",
           }}
-        />
-      {/* Glass effect overlay */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent white
-          backdropFilter: 'blur(2px)', // Glass blur effect
-          WebkitBackdropFilter: 'blur(10px)', // Safari support
-          zIndex: 1,
-        }}
-      >
+        >
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${imgBg})`,
+              backgroundSize: "cover",
+              objectFit: "cover",
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(2px)',
+              zIndex: 1,
+            }}
+          >
             <Box
-        
-         
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          fontFamily: "TanseekModernProArabic-ExBold",
-          color: "#000",
-          listStyleType: "none",
-          mt: 3,
-          position: "absolute",
-          top: "0",
-          ml: "15px",
-        }}
-      >
-        {userInfo.map((user) => (
-          <Box  key={user.label}>
-            <Typography
               sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
                 fontFamily: "TanseekModernProArabic-ExBold",
-                fontSize: "30px",
-                fontWeight: "900",
+                color: "#000",
+                listStyleType: "none",
+                mt: 3,
+                position: "absolute",
+                top: "0",
+                ml: "15px",
               }}
-              component="h4"
             >
-              {user.label}
-              <Typography
-                component="span"
-                sx={{
-                  ml: "20px",
-                  fontWeight: "400",
-                  color: "#ffffff",
-                  fontSize: "30px",
-                }}
-              >
-                {user.value}
-              </Typography>
-            </Typography>
+              {userInfo.map((user) => (
+                <Box key={user.label}>
+                  <Typography
+                    sx={{
+                      fontFamily: "TanseekModernProArabic-ExBold",
+                      fontSize: "30px",
+                      fontWeight: "900",
+                    }}
+                    component="h4"
+                  >
+                    {user.label}
+                    <Typography
+                      component="span"
+                      sx={{
+                        ml: "20px",
+                        fontWeight: "400",
+                        color: "#ffffff",
+                        fontSize: "30px",
+                      }}
+                    >
+                      {user.value}
+                    </Typography>
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
-        ))}
-      </Box>
-      </Box>
-      </Grid2>
+        </Box>
+      </Grid>
 
       {/* الكارت الثاني */}
-      <Grid2
-  sx={{
-    backgroundColor: "#3F3D3D",
-    borderRadius: "10px",
-    padding: "5px",
-    mx: 'auto',
-    width: '240px',
-    height: "330px",
-    boxShadow: 2,
-  }}
->
-  <Typography
-    sx={{
-      mt: "15px",
-      color: "#fff",
-      textAlign: 'left',
-      fontFamily: "TanseekModernProArabic-ExBold",
-      fontSize: "25px",
-      fontWeight: "900",
-      lineHeight: "30px",
-      ml: "15px",
-    }}
-  >
-    Download Our App
-  </Typography>
-  <Box sx={{ mt: "50px", textAlign: 'center' }}>
-    <Box component="img" src={googlePlay} 
-    sx={{ 
-      width: "230px", 
-      mb: 2 ,
-      cursor: 'pointer',
-      transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out', // Animation on hover
-      '&:hover': {
-       transform: 'scale(1.1)', // Slightly enlarges the element
-       boxShadow: 0, // Increases shadow depth on hover
-   },
-      }} />
-    <Divider
-      sx={{
-        backgroundColor: "#ECBC56",
-        width: "204.04px",
-        height: "0.7px",
-        margin: "12px auto",
-      }}
-    />
-    <Box component="img" src={appstore} 
-    sx={{
-       width: "230px", 
-       mt: 2,
-       cursor: 'pointer',
-       transition: 'transform 0.3s ease-in-out, drop-shadow 0.3s ease-in-out', // Animation on hover
-        '&:hover': {
-        transform: 'scale(1.1)', // Slightly enlarges the element
-        boxShadow: 0, // Increases shadow depth on hover
-    },
-     }} />
-  </Box>
-</Grid2>
+      <Grid item xs={12} sm={6} md={4}>
+        <Box
+          sx={{
+            backgroundColor: "#3F3D3D",
+            borderRadius: "10px",
+            padding: "5px",
+            mx: 'auto',
+            height: "330px",
+            boxShadow: 2,
+            textAlign: 'center',
+          }}
+        >
+          <Typography
+            sx={{
+              mt: "15px",
+              color: "#fff",
+              fontFamily: "TanseekModernProArabic-ExBold",
+              fontSize: "25px",
+              fontWeight: "900",
+            }}
+          >
+            Download Our App
+          </Typography>
+          <Box sx={{ mt: "50px" }}>
+            <Box component="img" src={googlePlay}
+              sx={{
+                width: "230px",
+                mb: 2,
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+              }} />
+            <Divider
+              sx={{
+                backgroundColor: "#ECBC56",
+                width: "204.04px",
+                height: "0.7px",
+                margin: "12px auto",
+              }}
+            />
+            <Box component="img" src={appstore}
+              sx={{
+                width: "230px",
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease-in-out, drop-shadow 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+              }} />
+          </Box>
+        </Box>
+      </Grid>
 
       {/* الكارت الثالث */}
-      <Grid2
-        sx={{
-          background: "linear-gradient(34.82deg, #000000 48.98%, #665B2E 89.31%, #C3AD57 104.99%)",
-          borderRadius: "15px",
-          width: sidebarOpen ? '380px' : '525px',
-          height: "330px",
-          mx: 'auto',
-          p: "20px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          boxShadow: 2,
-        }}
-      >
-        <Typography
-          sx={{ fontSize: { xs: "20px", md: "24px" }, color: "#FFFFFF", lineHeight: '20px' }}
-        >
-          {cards[0].level}
-        </Typography>
-
-        <Typography
-          sx={{ fontSize: { xs: "16px", md: "20px" }, color: "#FFFFFF" }}
-        >
-          Course Content
-        </Typography>
+      <Grid item xs={12} sm={6} md={4}>
         <Box
-          component="ul"
           sx={{
+            background: "linear-gradient(34.82deg, #000000 48.98%, #665B2E 89.31%, #C3AD57 104.99%)",
+            borderRadius: "15px",
+            height: "330px",
+            p: "20px",
             display: "flex",
             flexDirection: "column",
-            gap: "5px",
-            mt: "3px",
-            px: "10px",
+            justifyContent: "space-between",
+            boxShadow: 2,
           }}
         >
-          {cards[0].content.map((item, index) => (
-            <Box
-              component="li"
-              key={index}
-              sx={{
-                fontFamily: "TanseekModernProArabic-ExBold",
-                listStyleType: "disc",
-                fontSize: { xs: "14px", md: "17px" },
-                color: "#FFFFFF",
-              }}
-            >
-              {item}
-            </Box>
-          ))}
-        </Box>
+          <Typography
+            sx={{ fontSize: { xs: "20px", md: "24px" }, color: "#FFFFFF", lineHeight: '20px' }}
+          >
+            {cards[0].level}
+          </Typography>
 
-        <Typography
-          sx={{ fontSize: { xs: "16px", md: "20px" }, color: "#FFFFFF", lineHeight: '50%' }}
-        >
-          Prerequisites
-        </Typography>
-        <Box
-          component="ul"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "5px",
-            mt: "3px",
-            px: "10px",
-          }}
-        >
-          {cards[0].Prerequisites.map((item, index) => (
-            <Box
-              component="li"
-              key={index}
-              sx={{
-                fontFamily: "TanseekModernProArabic-ExBold",
-                listStyleType: "disc",
-                fontSize: { xs: "14px", md: "17px" },
-                color: "#FFFFFF",
-              }}
-            >
-              {item}
-            </Box>
-          ))}
+          <Typography
+            sx={{ fontSize: { xs: "16px", md: "20px" }, color: "#FFFFFF" }}
+          >
+            Course Content
+          </Typography>
+          <Box
+            component="ul"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              mt: "3px",
+              px: "10px",
+            }}
+          >
+            {cards[0].content.map((item, index) => (
+              <Box
+                component="li"
+                key={index}
+                sx={{
+                  fontFamily: "TanseekModernProArabic-ExBold",
+                  listStyleType: "disc",
+                  fontSize: { xs: "14px", md: "17px" },
+                  color: "#FFFFFF",
+                }}
+              >
+                {item}
+              </Box>
+            ))}
+          </Box>
+
+          <Typography
+            sx={{ fontSize: { xs: "16px", md: "20px" }, color: "#FFFFFF", lineHeight: '50%' }}
+          >
+            Prerequisites
+          </Typography>
+          <Box
+            component="ul"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              mt: "3px",
+              px: "10px",
+            }}
+          >
+            {cards[0].Prerequisites.map((item, index) => (
+              <Box
+                component="li"
+                key={index}
+                sx={{
+                  fontFamily: "TanseekModernProArabic-ExBold",
+                  listStyleType: "disc",
+                  fontSize: { xs: "14px", md: "17px" },
+                  color: "#FFFFFF",
+                }}
+              >
+                {item}
+              </Box>
+            ))}
+          </Box>
         </Box>
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 }
 

@@ -50,17 +50,6 @@ function Sidebar() {
       >
         <Box
           sx={{
-            backgroundColor: "black",
-            width: "100%",
-            height: "50px",
-            position: "absolute",
-            bottom: sidebarOpen ? { xs: "250px", md: "0" } : "0",
-            left: "0",
-            display: sidebarOpen ? { xs: "block" ,md:"none"} : "none",
-          }}
-        ></Box>
-        <Box
-          sx={{
             position: "absolute",
             zIndex: "-1",
             top: "-50px",
@@ -223,7 +212,10 @@ function Sidebar() {
                   color: "#ecbc56", // تغيير اللون عند التمرير
                 },
               }}
-              onClick={() => navigate(`${link.path}`)}
+              onClick={() => {
+                navigate(`${link.path}`);
+                window.scrollTo(0, 0);
+              }}
             >
               {link.icon}
             </Box>

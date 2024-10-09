@@ -55,7 +55,7 @@ function Navbar() {
             navigate("/");
           }}
         >
-          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "80px" }, width: '80px' ,mb:'10px'}} />
+          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "80px" }, width: {xs:'auto', md:'80px'} ,mb:'10px'}} />
           <Box component="img" src={brand} sx={{ height: { xs: "40px", md: "50px" }, ml: { xs: 1, md: 2 }, width: 'auto' ,mt:'6px'}} />
         </Box>
       </Box>
@@ -66,7 +66,7 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           position: "absolute",
-          flexDirection: { xs: 'row-reverse', md: 'row' },
+          // flexDirection: { xs: 'row-reverse', md: 'row' },
           right: "60px",
           gap: { xs: "10px", md: "15px" },
         }}
