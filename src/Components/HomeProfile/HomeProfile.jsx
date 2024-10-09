@@ -16,7 +16,7 @@ function HomeProfile() {
     >
       <BannerProfile sx={{ marginTop: { xs: '20px', md: '50px', lg: '70px' } }} /> 
       
-      <Box sx={{ marginTop: { xs: '10%', md: '10%', xl: '15%' } }}>
+      <Box sx={{ marginTop:"5%"}}>
         <Cards />
       </Box>
 
