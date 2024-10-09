@@ -72,6 +72,7 @@ function MissionAndVision() {
                       fontSize: "60px",
                       letterSpacing: "15px",
                       lineHeight: "72.27px",
+                      fontWeight:'600'
                     }}
                   >
                     M

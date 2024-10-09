@@ -76,12 +76,12 @@ function OurCourses() {
             Courses
           </Typography>
         </Typography>
-        
+
         <Box
           sx={{
             marginTop: "50px",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "",
             alignItems: "center",
             gap: "20px",
             flexWrap: "wrap",
@@ -145,35 +145,61 @@ function OurCourses() {
                     >
                       {course.course_title}
                     </Typography>
-                    {splitDescription(course.course_description).map((line, i) => (
-                      <Typography key={i} variant="body1" sx={{ fontSize: { xs: "16px", sm: "25px" } }}>
-                        {line}
-                      </Typography>
-                    ))}
+                    {splitDescription(course.course_description).map(
+                      (line, i) => (
+                        <Typography
+                          key={i}
+                          variant="body1"
+                          sx={{ fontSize: { xs: "16px", sm: "25px" } }}
+                        >
+                          {line}
+                        </Typography>
+                      )
+                    )}
 
-                    <Typography variant="subtitle1" sx={{ fontSize: { xs: "12px", sm: "15px" } }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ fontSize: { xs: "12px", sm: "15px" } }}
+                    >
                       Instructor: {course.course_instructor_name}
                     </Typography>
+                    <Box sx={{display:'flex', alignItems:'center',gap:'10px'}}>
+                      <Box
+                        sx={{
+                          color: "#ECBC56",
+                          display: "flex",
+                          alignItems: "center",
+                          mt:'7px'
+                        }}
+                      >
+                        <FaStar style={{ width: "10px", height: "10px" }} />
+                        <FaStar style={{ width: "10px", height: "10px" }} />
+                        <FaStar style={{ width: "10px", height: "10px" }} />
+                        <FaStar style={{ width: "10px", height: "10px" }} />
+                        <FaStar style={{ width: "10px", height: "10px" }} />
+                      </Box>
 
-                    <Box
-                      sx={{
-                        color: "#ECBC56",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <Typography sx={{ color: "gray", fontSize: { xs: "10px", sm: "13px" } }}>
-                        10k
+                      <Typography
+                        sx={{
+                          color: "gray",
+                          fontSize: { xs: "10px", sm: "20px" },
+                        }}
+                      >
+                        10{" "}
+                        <Typography
+                          component="span"
+                          sx={{ ml: "1px", fontFamily:'Bayon',fontSize:' 20px'}}
+                        >
+                          k
+                        </Typography>
                       </Typography>
                     </Box>
+
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <IoMdTime style={{ color: "#ECBC56" }} />
-                      <Typography sx={{ fontSize: { xs: "14px", sm: "20px" }, ml: "5px" }}>
+                      <Typography
+                        sx={{ fontSize: { xs: "14px", sm: "20px" }, ml: "5px" }}
+                      >
                         Duration:{" "}
                         <Typography variant="span">
                           {course.course_total_hours}

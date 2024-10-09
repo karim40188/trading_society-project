@@ -413,7 +413,7 @@ function AcademyProfile() {
                                 </Typography>
                                 <Box
                                   sx={{
-                                    color: "#ECBC56",
+                              
                                     display: "flex",
                                     alignItems: "center",
                                     mt: "5px",
@@ -427,17 +427,23 @@ function AcademyProfile() {
                                         style={{
                                           width: "15px",
                                           height: "15px",
+                                          color: "#ECBC56",
                                         }}
                                       />
                                     ))}
                                   <Typography
                                     sx={{
                                       color: "gray",
-                                      fontSize: "14px",
-                                      ml: "5px",
+                                      fontSize: { xs: "10px", sm: "20px" },
                                     }}
                                   >
-                                    10k
+                                    10{" "}
+                                    <Typography
+                                      component="span"
+                                      sx={{ ml: "1px" }}
+                                    >
+                                      k
+                                    </Typography>
                                   </Typography>
                                 </Box>
                                 <Box
