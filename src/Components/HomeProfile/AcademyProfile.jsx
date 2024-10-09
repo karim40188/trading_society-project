@@ -469,7 +469,10 @@ function AcademyProfile() {
         ) : (
           ""
         )}
+      <OurCourses/>
       </Box>
+
+
     </Box>
   );
 }
