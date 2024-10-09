@@ -108,12 +108,13 @@ function CeoMF() {
             </Typography>
             <Box
               sx={{
-                width: { xs: "120px", lg: "608px" },
+                width: { xs: "120px", lg: "248.12px" },
                 height: "auto",
                 display: "flex",
                 justifyContent: "center",
                 mt: "20px",
                 ml: "auto",
+                mr:'20%',
               }}
             >
               <Box

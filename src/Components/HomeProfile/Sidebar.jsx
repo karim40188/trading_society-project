@@ -38,7 +38,6 @@ function Sidebar() {
           width: "302px",
           position: "fixed",
           display: { xs: sidebarOpen ? 'block' : 'none', md: 'block' }, // يظهر على الشاشات الصغيرة فقط إذا كانت sidebarOpen = true
-
           top: "0",
           bottom: "0",
           height: "100%", // ضمان أن الـ Sidebar يأخذ 100% من ارتفاع الشاشة بدون شريط تمرير
@@ -76,6 +75,7 @@ function Sidebar() {
             mt: "10px", // تقليل المسافة العلوية
             transform: "translateX(10px)", // تقليل المسافة الأفقية
             backgroundRepeat: "no-repeat",
+
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -199,7 +199,7 @@ function Sidebar() {
             p: "10px",
             backgroundColor: "#333",
             borderRadius: "0 10px 10px 0",
-            zIndex: "1300",
+            zIndex: "99999999",
           }}
         >
           {links.map((link) => (

@@ -15,7 +15,7 @@ function FooterProfile() {
         py: { xs: 4, md: 8 },
         color: "#fff",
         position: 'relative',
-        zIndex: '999999'
+        zIndex: '9999'
       }}
     >
       <Container>

@@ -46,7 +46,7 @@ function Layout2() {
                 width: sidebarOpen ? "75%" : "90%",
                 mx: "auto",
                 position: "relative",
-                left: { xs: "50%", xl: "45%" },
+                left: sidebarOpen ? { xs: "49%", xl: "45%" }:"45%",
                 transform: "translateX(-50%)",
                 transition: "width 0.3s ease",
                
