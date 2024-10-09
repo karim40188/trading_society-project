@@ -49,7 +49,7 @@ export function TokenContextProvider({ children }) {
     }
   }, [setToken, token]);
 
-  let [sidebarOpen, setSidebarOpen] = useState(true);
+  let [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <TokenContext.Provider
       value={{ token, setToken, sidebarOpen, setSidebarOpen }}

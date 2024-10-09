@@ -32,6 +32,7 @@ function CeoMF() {
         flexDirection: { xs: "column-reverse", lg: "row-reverse" },
         gap: "10px",
         p: { xs: 2, lg: 0 },
+        overflow:'hidden'
       }}
     >
       <Box

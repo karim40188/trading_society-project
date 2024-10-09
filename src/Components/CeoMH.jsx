@@ -27,7 +27,7 @@ function CeoMH() {
         flexDirection: { xs: "column-reverse", lg: "row" },
         gap: "10px",
         p: { xs: 2, lg: 0 },
-        // overflow: "hidden",
+        // overflowY: "hidden",
        
 
       }}
@@ -40,6 +40,8 @@ function CeoMH() {
           mb: { xs: 2, lg: 0 },
           transform: { xs: "translateY(0)", lg: "translateY(150px)" },
           pl: "50px",
+          overflow:"hidden"
+          
         }}
       >
         <motion.div
@@ -68,7 +70,7 @@ function CeoMH() {
         </motion.div>
 
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ x: 0, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >

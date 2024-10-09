@@ -48,13 +48,15 @@ function Navbar() {
             display: "flex",
             alignItems: "center",
             cursor: "pointer",
+       
+         
           }}
           onClick={() => {
             navigate("/");
           }}
         >
-          <Box component="img" src={logo} sx={{ height: "50px" }} />
-          <Box component="img" src={brand} sx={{ height: "50px", ml: 2 }} />
+          <Box component="img" src={logo} sx={{ height: "50px", width:'100%' }} />
+          <Box component="img" src={brand} sx={{ height: "50px", ml: 2 ,    width:{xs:"100%"} }} />
         </Box>
       </Box>
 

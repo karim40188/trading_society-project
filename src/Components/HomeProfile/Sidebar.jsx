@@ -37,11 +37,12 @@ function Sidebar() {
         sx={{
           width: "302px",
           position: "fixed",
-          display: sidebarOpen ? "block" : "none",
+          display: { xs: sidebarOpen ? 'block' : 'none', md: 'block' }, // يظهر على الشاشات الصغيرة فقط إذا كانت sidebarOpen = true
+
           top: "0",
           bottom: "0",
           height: "100%", // ضمان أن الـ Sidebar يأخذ 100% من ارتفاع الشاشة بدون شريط تمرير
-          zIndex: "9999999",
+          zIndex: "999999",
           overflow: "hidden", // إخفاء أي محتوى زائد
           transition: "transform 0.3s ease-in-out", // إضافة تأثير الانتقال
           transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)", // إخفاء الشريط الجانبي عن طريق التحريك
