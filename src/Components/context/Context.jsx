@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export let LoadingContext = createContext("");
 // eslint-disable-next-line react/prop-types
@@ -34,8 +33,9 @@ export function DarkModeContextProvider({ children }) {
 }
 
 export let TokenContext = createContext("");
-// eslint-disable-next-line react/prop-types
 
+
+// eslint-disable-next-line react/prop-types
 export function TokenContextProvider({ children }) {
   let [token, setToken] = useState(null);
 

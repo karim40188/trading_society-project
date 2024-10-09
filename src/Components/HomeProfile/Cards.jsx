@@ -1,9 +1,8 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import imgBg from "../../home_profile_assets/img_bg.png";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import googlePlay from "../../home_profile_assets/googleplay.png";
 import appstore from "../../home_profile_assets/appstore.png";
-import { TokenContext } from "../context/Context";
 
 function Cards() {
   const [userInfo] = useState([
@@ -14,7 +13,6 @@ function Cards() {
     { label: "Start Date", value: "25/10/2024" },
   ]);
 
-  let { sidebarOpen } = useContext(TokenContext);
   const [cards] = useState([
     {
       level: "Elite",

@@ -7,7 +7,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import lang_img from "../../home_profile_assets/lang.png";
 import { IoMdNotifications } from "react-icons/io";
-import { MdDarkMode, MdLightMode } from 'react-icons/md';
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function Navbar() {
   let { sidebarOpen, setSidebarOpen } = useContext(TokenContext);
@@ -55,8 +55,25 @@ function Navbar() {
             navigate("/");
           }}
         >
-          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "80px" }, width: {xs:'auto', md:'80px'} ,mb:'10px'}} />
-          <Box component="img" src={brand} sx={{ height: { xs: "40px", md: "50px" }, ml: { xs: 1, md: 2 }, width: 'auto' ,mt:'6px'}} />
+          <Box
+            component="img"
+            src={logo}
+            sx={{
+              height: { xs: "40px", md: "80px" },
+              width: { xs: "auto", md: "80px" },
+              mb: "10px",
+            }}
+          />
+          <Box
+            component="img"
+            src={brand}
+            sx={{
+              height: { xs: "40px", md: "50px" },
+              ml: { xs: 1, md: 2 },
+              width: "auto",
+              mt: "6px",
+            }}
+          />
         </Box>
       </Box>
 
@@ -79,15 +96,45 @@ function Navbar() {
             alignItems: "center",
           }}
         >
-          <Box component="img" src={lang_img} sx={{ width: { xs: "20px", md: "30px" }, transition: "transform 0.3s ease" }} />
-          <div style={{ cursor: 'pointer', transition: "color 0.3s ease" }} onClick={toggleMode}>
+          <Box
+            component="img"
+            src={lang_img}
+            sx={{
+              width: { xs: "20px", md: "30px" },
+              transition: "transform 0.3s ease",
+            }}
+          />
+          <div
+            style={{ cursor: "pointer", transition: "color 0.3s ease" }}
+            onClick={toggleMode}
+          >
             {darkMode ? (
-              <MdLightMode style={{ color: "#ecbc56", fontSize: "20px", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
+              <MdLightMode
+                style={{
+                  color: "#ecbc56",
+                  fontSize: "20px",
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.1)" },
+                }}
+              />
             ) : (
-              <MdDarkMode style={{ fontSize: "20px", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
+              <MdDarkMode
+                style={{
+                  fontSize: "20px",
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.1)" },
+                }}
+              />
             )}
           </div>
-          <IoMdNotifications style={{ color: "#ecbc56", fontSize: '20px', transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.1)" } }} />
+          <IoMdNotifications
+            style={{
+              color: "#ecbc56",
+              fontSize: "20px",
+              transition: "transform 0.3s ease",
+              "&:hover": { transform: "scale(1.1)" },
+            }}
+          />
         </Box>
 
         {/* الـ menu */}

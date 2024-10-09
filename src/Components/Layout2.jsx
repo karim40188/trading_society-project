@@ -49,9 +49,9 @@ function Layout2() {
                 mx: "auto",
                 transition: "width 0.3s ease",
                 position: "relative",
-                left: sidebarOpen ? { xs: "0", xl: "0" } : {xs:'50%', md: "46%" },
+                left: sidebarOpen ? { xs: "0", md: "50%" } : {xs:'50%', md: "46%" },
                 
-                transform: { xs: "translateX(-50%)", md: "translateX(-50%)" },
+                transform:sidebarOpen ? { xs: "0", md: "translateX(-50%)" } : { xs: "translateX(-50%)", md: "translateX(-50%)" },
                 // padding:'10px'
               }}
             >

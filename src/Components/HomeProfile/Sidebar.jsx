@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Button, Typography} from "@mui/material";
 import imgBg from "../../home_profile_assets/img_bg.png";
 import profile_img from "../../home_profile_assets/profile_img.png";
 
@@ -11,11 +11,10 @@ import { FaExchangeAlt } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { LuNewspaper } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { DarkModeContext, TokenContext } from "../context/Context";
+import { TokenContext } from "../context/Context";
 import sideBar_img from "../../home_profile_assets/sidebar_img.png";
 
 function Sidebar() {
-  let { toggleMode } = useContext(DarkModeContext);
   let { sidebarOpen } = useContext(TokenContext);
   let [activeLink, setActiveLink] = useState(false);
   let navigate = useNavigate();
@@ -29,6 +28,10 @@ function Sidebar() {
     { name: "Calenders", path: "/calender", icon: <SlCalender /> },
     { name: "News", path: "/news", icon: <LuNewspaper /> },
   ]);
+
+
+
+
 
   return (
     <>
