@@ -188,7 +188,7 @@ function OurCourses() {
                         10{" "}
                         <Typography
                           component="span"
-                          sx={{ ml: "1px", fontFamily:'Bayon',fontSize:' 20px'}}
+                          sx={{ ml: "1px", fontFamily:'Bayon',fontSize:' 12px'}}
                         >
                           k
                         </Typography>
