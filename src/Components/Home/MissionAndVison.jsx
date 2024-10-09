@@ -142,16 +142,31 @@ function MissionAndVision() {
                   transform: { xs: "translateX(0)", md: "translateX(-60px)" },
                 }}
               >
-                <motion.img
-                  src={vision}
+                 <Typography
+                  variant="body2"
                   sx={{
-                    width: { xs: "80%", md: "100%" },
-                    height: "100%",
+                    width: "264px",
+                    // height: "100%",
+                    fontSize: "40px",
+                    textTransform: "capitalize",
+                    letterSpacing: "15px",
+                    lineHeight: "72.27px",
                   }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                />
+                >
+                  <Typography
+                    component="span"
+                    sx={{
+                      color: "#ecbc56",
+                      fontSize: "60px",
+                      letterSpacing: "15px",
+                      lineHeight: "72.27px",
+                      fontWeight:'600'
+                    }}
+                  >
+                    V
+                  </Typography>
+                  ission
+                </Typography>
               </Box>
             </Box>
             <Typography
