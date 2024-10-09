@@ -9,31 +9,28 @@ import lang_img from "../../home_profile_assets/lang.png";
 import { IoMdNotifications } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
-
-
 function Navbar() {
   let { sidebarOpen, setSidebarOpen } = useContext(TokenContext);
   let sidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
-
   };
 
   let navigate = useNavigate();
-
   let { darkMode, toggleMode } = useContext(DarkModeContext);
 
   return (
     <Box
       sx={{
         backgroundColor: darkMode ? "#000" : "#6B5B3D",
-        width: sidebarOpen ? "calc(100% - 300px)" : "100%",
-        left: sidebarOpen ? "300px" : "0",
-        height: "100px",
+        width: sidebarOpen ? { xs: "100%", md: "calc(100% - 300px)" } : "100%",
+        left: sidebarOpen ? { xs: 0, md: "300px" } : "0",
+        height: "80px",  // تقليل الارتفاع على الشاشات الصغيرة
         position: "fixed",
         top: 0,
         zIndex: "9999",
         display: "flex",
         alignItems: "center",
+        paddingX: { xs: "10px", md: "20px" },
       }}
     >
       <Box
@@ -48,15 +45,13 @@ function Navbar() {
             display: "flex",
             alignItems: "center",
             cursor: "pointer",
-       
-         
           }}
           onClick={() => {
             navigate("/");
           }}
         >
-          <Box component="img" src={logo} sx={{ height: "50px", width:'100%' }} />
-          <Box component="img" src={brand} sx={{ height: "50px", ml: 2 ,    width:{xs:"100%"} }} />
+          <Box component="img" src={logo} sx={{ height: { xs: "40px", md: "50px" }, width: 'auto' }} />
+          <Box component="img" src={brand} sx={{ height: { xs: "40px", md: "50px" }, ml: { xs: 1, md: 2 }, width: 'auto' }} />
         </Box>
       </Box>
 
@@ -66,23 +61,24 @@ function Navbar() {
           display: "flex",
           alignItems: "center",
           position: "absolute",
-          right: "10px", // المسافة من الجانب الأيمن
-          gap: "15px", // المسافة بين الأيقونات و menu
+          flexDirection:{xs:'row-reverse',md:'row'},
+          right: "60px", 
+          gap: { xs: "10px", md: "15px" },
         }}
       >
         {/* الأيقونات */}
         <Box
           sx={{
             display: "flex",
-            gap: "20px", // تقليل المسافات بين الأيقونات
+            gap: { xs: "10px", md: "20px" }, 
             alignItems: "center",
           }}
         >
-          <Box component="img" src={lang_img} />
+          <Box component="img" src={lang_img} sx={{ width: { xs: "20px", md: "30px" } }} />
           <div style={{ cursor: 'pointer' }} onClick={toggleMode}>
-        {darkMode ? <MdLightMode  style={{color:"#ecbc56",fontSize:"20px"}}/> : <MdDarkMode />}
-      </div>
-          <IoMdNotifications style={{color:"#ecbc56",fontSize:'20px'}}/>
+            {darkMode ? <MdLightMode style={{ color: "#ecbc56", fontSize: "20px" }} /> : <MdDarkMode />}
+          </div>
+          <IoMdNotifications style={{ color: "#ecbc56", fontSize: '20px' }} />
         </Box>
 
         {/* الـ menu */}
@@ -90,10 +86,11 @@ function Navbar() {
           onClick={sidebarToggle}
           sx={{
             color: "#fff",
-            fontSize: "30px",
+            fontSize: { xs: "25px", md: "30px" },
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
+          
           }}
         >
           <CiMenuBurger />

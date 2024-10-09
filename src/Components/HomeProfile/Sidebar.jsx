@@ -45,9 +45,13 @@ function Sidebar() {
           overflow: "hidden", // إخفاء أي محتوى زائد
           transition: "transform 0.3s ease-in-out", // إضافة تأثير الانتقال
           transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)", // إخفاء الشريط الجانبي عن طريق التحريك
+          backgroundColor:'black'
 
         }}
       >
+
+
+        <Box sx={{backgroundColor:'black',width:'100%',height:'50px',position:'absolute',bottom:'250px',left:'0'}}></Box>
         <Box
           sx={{
             position: "absolute",

@@ -92,7 +92,7 @@ function OnlineSessions() {
               // borderRadius: "8px",
             }}
           />
-          <Box component="img" src={tsImg} sx={{position:"absolute",top:'0',right:'-7px'}}/>
+          <Box component="img" src={tsImg} sx={{position:"absolute",top:'0',right:'-7px',}}/>
           <CardContent
             sx={{ color: "#000", backgroundColor: "#D9D9D9", height: "100%" }}
           >

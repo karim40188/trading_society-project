@@ -5,32 +5,28 @@ import {
   Card,
   CardMedia,
   CardContent,
+  Grid,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { TokenContext } from "../context/Context";
 import { IoMdTime } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
+import { motion } from "framer-motion"; // استيراد Framer Motion
+
 function OurCourses() {
   let [categories, setCategories] = useState([]);
   let [currentCategory, setCurrentCategory] = useState(null);
   let [activeCategory, setActiveCategory] = useState(null);
-  // let [activeInstructor, setActiveInstructor] = useState(null);
-
   let navigate = useNavigate();
 
-  // let { token } = useContext(TokenContext);
-  // جلب الكورسات من الـ API
   async function getCourses() {
     let res = await axios.get(`https://tradingsociety.net/api/v1/courses`, {
       headers: {
         Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
       },
     });
-    setCategories(res?.data?.courses?.data); // تخزين البيانات في حالة الاستخدام
-    console.log(res?.data?.courses?.data);
-    console.log(res);
+    setCategories(res?.data?.courses?.data);
   }
 
   function splitDescription(description) {
@@ -41,7 +37,6 @@ function OurCourses() {
     getCourses();
   }, []);
 
-  // جلب بيانات الكورسات بناءً على الفئة المحددة
   function getCoursesData() {
     if (currentCategory) {
       let category = categories.find(
@@ -59,7 +54,7 @@ function OurCourses() {
       <Box>
         <Typography
           sx={{
-            fontSize: "33px",
+            fontSize: { xs: "24px", sm: "33px" },
             my: "3px",
             color: "#fff",
             transform: "translateX(-40px)",
@@ -81,57 +76,50 @@ function OurCourses() {
             Courses
           </Typography>
         </Typography>
+        
         <Box
           sx={{
             marginTop: "50px",
             display: "flex",
-            justifyContent: "between",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "80px",
+            gap: "20px",
             flexWrap: "wrap",
           }}
         >
-          {categories.map((categoryData, index) => {
-            return (
-              <Box key={index}>
-                <Button
-                  sx={{ textTransform: "capitalize", color: "#fff" }}
-                  onClick={(e) => {
-                    if (activeCategory) {
-                      activeCategory.classList.remove("active_category");
-                    }
+          {categories.map((categoryData, index) => (
+            <Box key={index}>
+              <Button
+                sx={{ textTransform: "capitalize", color: "#fff" }}
+                onClick={(e) => {
+                  if (activeCategory) {
+                    activeCategory.classList.remove("active_category");
+                  }
 
-                    e.currentTarget.classList.add("active_category");
-                    setActiveCategory(e.currentTarget);
-                    setCurrentCategory(categoryData.category_name);
-                  }}
-                >
-                  {categoryData.category_name}
-                </Button>
-              </Box>
-            );
-          })}
+                  e.currentTarget.classList.add("active_category");
+                  setActiveCategory(e.currentTarget);
+                  setCurrentCategory(categoryData.category_name);
+                }}
+              >
+                {categoryData.category_name}
+              </Button>
+            </Box>
+          ))}
         </Box>
 
         {/* عرض الكورسات بناءً على الفئة المحددة */}
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            marginTop: 3,
-            zIndex: "999",
-       
-          }}
-        >
-          {getCoursesData().map((course, index) => {
-            return (
-              <>
+        <Grid container spacing={2} sx={{ marginTop: 3 }}>
+          {getCoursesData().map((course, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }} // يبدأ من الشفافية 0 ويكون أصغر
+                animate={{ opacity: 1, scale: 1 }} // يظهر بشكل كامل
+                exit={{ opacity: 0, scale: 0.9 }} // عند الاختفاء يصبح أصغر
+                transition={{ duration: 0.3 }} // مدة الحركة
+              >
                 <Card
-                  key={index}
                   sx={{
-                    width: "45%",
                     height: "auto",
-                    margin: 2,
                     cursor: "pointer",
                     backgroundColor: "transparent",
                   }}
@@ -142,37 +130,28 @@ function OurCourses() {
                 >
                   <CardMedia
                     component="img"
-                    // height="140"
                     image={course.course_photo}
                     alt={course.course_title}
-                    sx={{}}
                   />
-                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
+                  <CardContent sx={{ color: "#fff", width: "100%" }}>
                     <Typography
                       gutterBottom
-                      // variant="body1"
                       component="div"
                       sx={{
-                        fontSize: "30px",
+                        fontSize: { xs: "20px", sm: "30px" },
                         fontFamily: "TanseekModernProArabic-Bold",
-                        lineHeight:'15px'
+                        lineHeight: "15px",
                       }}
                     >
                       {course.course_title}
                     </Typography>
-                    {splitDescription(course.course_description).map(
-                      (line, i) => (
-                        <Typography
-                          key={i}
-                          variant="body1"
-                          sx={{ fontSize: "25px" }}
-                        >
-                          {line}
-                        </Typography>
-                      )
-                    )}
+                    {splitDescription(course.course_description).map((line, i) => (
+                      <Typography key={i} variant="body1" sx={{ fontSize: { xs: "16px", sm: "25px" } }}>
+                        {line}
+                      </Typography>
+                    ))}
 
-                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
+                    <Typography variant="subtitle1" sx={{ fontSize: { xs: "12px", sm: "15px" } }}>
                       Instructor: {course.course_instructor_name}
                     </Typography>
 
@@ -188,13 +167,13 @@ function OurCourses() {
                       <FaStar style={{ width: "10px", height: "10px" }} />
                       <FaStar style={{ width: "10px", height: "10px" }} />
                       <FaStar style={{ width: "10px", height: "10px" }} />
-                      <Typography sx={{ color: "gray", fontSize: "13px" }}>
+                      <Typography sx={{ color: "gray", fontSize: { xs: "10px", sm: "13px" } }}>
                         10k
                       </Typography>
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <IoMdTime style={{ color: "#ECBC56" }} />
-                      <Typography sx={{ fontSize: "20px", ml: "5px" }}>
+                      <Typography sx={{ fontSize: { xs: "14px", sm: "20px" }, ml: "5px" }}>
                         Duration:{" "}
                         <Typography variant="span">
                           {course.course_total_hours}
@@ -203,164 +182,10 @@ function OurCourses() {
                     </Box>
                   </CardContent>
                 </Card>
-                <Card
-                  key={index}
-                  sx={{
-                    width: "45%",
-                    height: "auto",
-                    margin: 2,
-                    cursor: "pointer",
-                    backgroundColor: "transparent",
-                  }}
-                  onClick={() => {
-                    navigate(`/courses/${course.id}`);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    // height="140"
-                    image={course.course_photo}
-                    alt={course.course_title}
-                    sx={{}}
-                  />
-                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
-                    <Typography
-                      gutterBottom
-                      // variant="body1"
-                      component="div"
-                      sx={{
-                        fontSize: "30px",
-                        fontFamily: "TanseekModernProArabic-Bold",
-                        lineHeight:'15px'
-                      }}
-                    >
-                      {course.course_title}
-                    </Typography>
-                    {splitDescription(course.course_description).map(
-                      (line, i) => (
-                        <Typography
-                          key={i}
-                          variant="body1"
-                          sx={{ fontSize: "25px" }}
-                        >
-                          {line}
-                        </Typography>
-                      )
-                    )}
-
-                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
-                      Instructor: {course.course_instructor_name}
-                    </Typography>
-
-                    <Box
-                      sx={{
-                        color: "#ECBC56",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <Typography sx={{ color: "gray", fontSize: "13px" }}>
-                        10k
-                      </Typography>
-                    </Box>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <IoMdTime style={{ color: "#ECBC56" }} />
-                      <Typography sx={{ fontSize: "20px", ml: "5px" }}>
-                        Duration:{" "}
-                        <Typography variant="span">
-                          {course.course_total_hours}
-                        </Typography>
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </Card>
-                <Card
-                  key={index}
-                  sx={{
-                    width: "45%",
-                    height: "auto",
-                    margin: 2,
-                    cursor: "pointer",
-                    backgroundColor: "transparent",
-                  }}
-                  onClick={() => {
-                    navigate(`/courses/${course.id}`);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    // height="140"
-                    image={course.course_photo}
-                    alt={course.course_title}
-                    sx={{}}
-                  />
-                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
-                    <Typography
-                      gutterBottom
-                      // variant="body1"
-                      component="div"
-                      sx={{
-                        fontSize: "30px",
-                        fontFamily: "TanseekModernProArabic-Bold",
-                        lineHeight:'15px'
-                      }}
-                    >
-                      {course.course_title}
-                    </Typography>
-                    {splitDescription(course.course_description).map(
-                      (line, i) => (
-                        <Typography
-                          key={i}
-                          variant="body1"
-                          sx={{ fontSize: "25px" }}
-                        >
-                          {line}
-                        </Typography>
-                      )
-                    )}
-
-                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
-                      Instructor: {course.course_instructor_name}
-                    </Typography>
-
-                    <Box
-                      sx={{
-                        color: "#ECBC56",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <FaStar style={{ width: "10px", height: "10px" }} />
-                      <Typography sx={{ color: "gray", fontSize: "13px" }}>
-                        10k
-                      </Typography>
-                    </Box>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <IoMdTime style={{ color: "#ECBC56" }} />
-                      <Typography sx={{ fontSize: "20px", ml: "5px" }}>
-                        Duration:{" "}
-                        <Typography variant="span">
-                          {course.course_total_hours}
-                        </Typography>
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </>
-            );
-          })}
-        </Box>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </Box>
   );
