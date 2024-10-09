@@ -9,7 +9,6 @@ import OurScanners from "../Components/Home/OurScanners";
 import Footer from "../Components/Home/Footer";
 import { useContext } from "react";
 import { LoadingContext } from "../Components/context/Context";
-import logo from "../assets/2.gif";
 import CeoMF from "../Components/Home/CeoMF";
 import CeoMH from "../Components/CeoMH";
 import AboutUsText from "../Components/Home/AboutUsText";

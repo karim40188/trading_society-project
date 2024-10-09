@@ -168,6 +168,7 @@ function Navbar() {
                       navigate(`${link.path}`);
                       window.scrollTo(0, 0);
                     }}
+                
      
                   >
                     {link.name}

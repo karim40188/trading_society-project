@@ -6,12 +6,12 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import { TokenContext } from "../context/Context";
 import { IoMdTime } from "react-icons/io";
-import {  FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 function OurCourses() {
   let [categories, setCategories] = useState([]);
   let [currentCategory, setCurrentCategory] = useState(null);
@@ -31,6 +31,10 @@ function OurCourses() {
     setCategories(res?.data?.courses?.data); // تخزين البيانات في حالة الاستخدام
     console.log(res?.data?.courses?.data);
     console.log(res);
+  }
+
+  function splitDescription(description) {
+    return description.split("\r\n").filter((line) => line.trim() !== "");
   }
 
   useEffect(() => {
@@ -60,7 +64,7 @@ function OurCourses() {
             color: "#fff",
             transform: "translateX(-40px)",
             position: "relative",
-            zIndex:"99",
+            zIndex: "99",
             "&::after": {
               content: "''",
               backgroundColor: "#ecbc56",
@@ -91,7 +95,7 @@ function OurCourses() {
             return (
               <Box key={index}>
                 <Button
-                  sx={{ textTransform: "capitalize", color: "#fff", }}
+                  sx={{ textTransform: "capitalize", color: "#fff" }}
                   onClick={(e) => {
                     if (activeCategory) {
                       activeCategory.classList.remove("active_category");
@@ -116,6 +120,7 @@ function OurCourses() {
             flexWrap: "wrap",
             marginTop: 3,
             zIndex: "999",
+       
           }}
         >
           {getCoursesData().map((course, index) => {
@@ -124,13 +129,15 @@ function OurCourses() {
                 <Card
                   key={index}
                   sx={{
-                    width: "250px",
+                    width: "45%",
+                    height: "auto",
                     margin: 2,
                     cursor: "pointer",
                     backgroundColor: "transparent",
                   }}
                   onClick={() => {
                     navigate(`/courses/${course.id}`);
+                    window.scrollTo(0, 0);
                   }}
                 >
                   <CardMedia
@@ -138,24 +145,188 @@ function OurCourses() {
                     // height="140"
                     image={course.course_photo}
                     alt={course.course_title}
-                    sx={{ height: "124px" }}
+                    sx={{}}
                   />
-                  <CardContent sx={{ color: "#fff", width: "100%" }}>
+                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
                     <Typography
                       gutterBottom
                       // variant="body1"
                       component="div"
                       sx={{
-                        fontSize: "19px",
+                        fontSize: "30px",
                         fontFamily: "TanseekModernProArabic-Bold",
+                        lineHeight:'15px'
                       }}
                     >
                       {course.course_title}
                     </Typography>
-                    <Typography variant="body1" sx={{ fontSize: "17px" }}>
-                      {course.course_description}
+                    {splitDescription(course.course_description).map(
+                      (line, i) => (
+                        <Typography
+                          key={i}
+                          variant="body1"
+                          sx={{ fontSize: "25px" }}
+                        >
+                          {line}
+                        </Typography>
+                      )
+                    )}
+
+                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
+                      Instructor: {course.course_instructor_name}
                     </Typography>
-                    <Typography variant="subtitle1" sx={{ fontSize: "12px" }}>
+
+                    <Box
+                      sx={{
+                        color: "#ECBC56",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <Typography sx={{ color: "gray", fontSize: "13px" }}>
+                        10k
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <IoMdTime style={{ color: "#ECBC56" }} />
+                      <Typography sx={{ fontSize: "20px", ml: "5px" }}>
+                        Duration:{" "}
+                        <Typography variant="span">
+                          {course.course_total_hours}
+                        </Typography>
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Card
+                  key={index}
+                  sx={{
+                    width: "45%",
+                    height: "auto",
+                    margin: 2,
+                    cursor: "pointer",
+                    backgroundColor: "transparent",
+                  }}
+                  onClick={() => {
+                    navigate(`/courses/${course.id}`);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    // height="140"
+                    image={course.course_photo}
+                    alt={course.course_title}
+                    sx={{}}
+                  />
+                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
+                    <Typography
+                      gutterBottom
+                      // variant="body1"
+                      component="div"
+                      sx={{
+                        fontSize: "30px",
+                        fontFamily: "TanseekModernProArabic-Bold",
+                        lineHeight:'15px'
+                      }}
+                    >
+                      {course.course_title}
+                    </Typography>
+                    {splitDescription(course.course_description).map(
+                      (line, i) => (
+                        <Typography
+                          key={i}
+                          variant="body1"
+                          sx={{ fontSize: "25px" }}
+                        >
+                          {line}
+                        </Typography>
+                      )
+                    )}
+
+                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
+                      Instructor: {course.course_instructor_name}
+                    </Typography>
+
+                    <Box
+                      sx={{
+                        color: "#ECBC56",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <FaStar style={{ width: "10px", height: "10px" }} />
+                      <Typography sx={{ color: "gray", fontSize: "13px" }}>
+                        10k
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <IoMdTime style={{ color: "#ECBC56" }} />
+                      <Typography sx={{ fontSize: "20px", ml: "5px" }}>
+                        Duration:{" "}
+                        <Typography variant="span">
+                          {course.course_total_hours}
+                        </Typography>
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Card
+                  key={index}
+                  sx={{
+                    width: "45%",
+                    height: "auto",
+                    margin: 2,
+                    cursor: "pointer",
+                    backgroundColor: "transparent",
+                  }}
+                  onClick={() => {
+                    navigate(`/courses/${course.id}`);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    // height="140"
+                    image={course.course_photo}
+                    alt={course.course_title}
+                    sx={{}}
+                  />
+                  <CardContent sx={{ color: "#fff", width: "100%" ,}}>
+                    <Typography
+                      gutterBottom
+                      // variant="body1"
+                      component="div"
+                      sx={{
+                        fontSize: "30px",
+                        fontFamily: "TanseekModernProArabic-Bold",
+                        lineHeight:'15px'
+                      }}
+                    >
+                      {course.course_title}
+                    </Typography>
+                    {splitDescription(course.course_description).map(
+                      (line, i) => (
+                        <Typography
+                          key={i}
+                          variant="body1"
+                          sx={{ fontSize: "25px" }}
+                        >
+                          {line}
+                        </Typography>
+                      )
+                    )}
+
+                    <Typography variant="subtitle1" sx={{ fontSize: "15px" }}>
                       Instructor: {course.course_instructor_name}
                     </Typography>
 

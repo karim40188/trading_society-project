@@ -6,13 +6,16 @@ import { useContext } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import lang_img from "../../home_profile_assets/lang.png";
-import mode_switcher_img from "../../home_profile_assets/mode_switch.png";
-import notification_img from "../../home_profile_assets/notification.png";
+import { IoMdNotifications } from "react-icons/io";
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
+
+
 
 function Navbar() {
   let { sidebarOpen, setSidebarOpen } = useContext(TokenContext);
   let sidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
+
   };
 
   let navigate = useNavigate();
@@ -74,8 +77,10 @@ function Navbar() {
           }}
         >
           <Box component="img" src={lang_img} />
-          <Box component="img" src={mode_switcher_img} onClick={toggleMode} />
-          <Box component="img" src={notification_img} />
+          <div style={{ cursor: 'pointer' }} onClick={toggleMode}>
+        {darkMode ? <MdLightMode  style={{color:"#ecbc56",fontSize:"20px"}}/> : <MdDarkMode />}
+      </div>
+          <IoMdNotifications style={{color:"#ecbc56",fontSize:'20px'}}/>
         </Box>
 
         {/* الـ menu */}

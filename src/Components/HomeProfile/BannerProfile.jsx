@@ -3,7 +3,7 @@ import profileBanner from "../../home_profile_assets/profile_banner.png";
 
 function BannerProfile() {
   return (
-    <Box sx={{ width: "auto", height: "260px" }}>
+    <Box sx={{ width: "100%", height: "260px" }}>
     <Box
       component="img"
       src={profileBanner}
