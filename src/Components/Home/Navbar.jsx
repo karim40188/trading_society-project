@@ -153,6 +153,7 @@ function Navbar() {
                 .find((link) => link.name === hoveredLink) // البحث عن الرابط الرئيسي
                 .subLinks.map((subLink, index) => (
                   <Link
+                  className="sub-link"
                     key={index}
                     to="#"
                     style={{
@@ -161,10 +162,10 @@ function Navbar() {
                       color: "#fff",
                       textDecoration: "none",
                       fontWeight: "bold", // جعل النص غامق
-                      textAlign: "center", // مركز النص
                       transition: "color 0.3s ease", // تأثير عند التحويم
                       "&:hover": {
                         color: "#ecbc56", // تغيير اللون عند التحويم
+                     
                       },
                     }}
                   >
