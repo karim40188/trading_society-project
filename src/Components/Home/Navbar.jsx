@@ -106,7 +106,7 @@ function Navbar() {
           background: "#000000",
           maxWidth: "100%",
           height: "80px",
-          zIndex: "9999",
+          zIndex: "999999",
           transition: "300ms all ease",
           mx: "auto",
           mb: scrolling ? "0" : "30px",
@@ -135,7 +135,6 @@ function Navbar() {
             top: "100%",
             height: "300px",
             display: overlayVisible ? "block" : "none",
-            zIndex: 999,
           }}
           onMouseLeave={handleMouseLeave} // إغلاق الـ overlay عند الخروج منها
         >
