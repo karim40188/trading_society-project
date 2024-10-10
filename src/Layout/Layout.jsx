@@ -38,7 +38,7 @@ function Layout() {
       <span className="loader" style={{fontFamily:"Bayon"}}>Trading Society</span>
         </Box>
       ) : (
-        <Box sx={{ backgroundColor: "background.default" }}>
+        <Box>
           <Box>
             <Navbar />
           </Box>

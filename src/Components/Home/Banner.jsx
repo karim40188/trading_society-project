@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import banner from "../../assets/banner.jpg";
+import banner from "../../assets/19.jpg";
 import { useContext, useEffect, useState } from "react";
 import { LoadingContext } from "../context/Context";
 import { Swiper, SwiperSlide } from "swiper/react";

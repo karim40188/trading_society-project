@@ -152,7 +152,7 @@ function CourseWithId() {
                     />
                   ))}
                   <Typography variant="body2" sx={{ color: "gray", ml: "8px" }}>
-                    10 k views
+                    10k views
                   </Typography>
                 </Box>
               </CardContent>

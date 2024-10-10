@@ -9,7 +9,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  
 }
 .loader {
   font-size: 48px;
@@ -20,15 +19,15 @@ body {
   letter-spacing: 2px;
   position: relative;
   box-sizing: border-box;
-  width:100%;
+  width: 100%;
   letter-spacing: 5px;
 }
 .loader::after {
-  content: 'Trading Society';
+  content: "Trading Society";
   position: absolute;
   left: 0;
   top: 0;
-  color: #FFF;
+  color: #fff;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -86,8 +85,6 @@ a {
   text-decoration: none;
 }
 
-
-
 .trade_alert {
   filter: drop-shadow(0px 1px 16.6px #ecbc56);
 }
@@ -131,3 +128,5 @@ html {
     transform: rotate(360deg);
   }
 }
+
+

@@ -63,16 +63,18 @@ function MissionAndVision() {
                     textTransform: "capitalize",
                     letterSpacing: "15px",
                     lineHeight: "72.27px",
+                    color: "#ECBC56",
                   }}
                 >
                   <Typography
                     component="span"
                     sx={{
-                      color: "#ecbc56",
+                      color: "#ffffff",
                       fontSize: "60px",
                       letterSpacing: "15px",
                       lineHeight: "72.27px",
-                      fontWeight:'600'
+                      fontWeight:'600',
+                      ml: { xs: "0", md: "-2px" },
                     }}
                   >
                     M
@@ -89,19 +91,19 @@ function MissionAndVision() {
                 fontFamily: "TanseekModernProArabic-ExBold",
                 fontWeight: "400",
                 lineHeight: "1.5",
-                maxWidth: { xs: "100%", md: "350px" },
+                maxWidth: { xs: "100%", md: "380px" },
                 mx: "auto",
                 transform: {
                   xs: "translateX(0)",
-                  md: "translate(140px, -70px)",
+                  md: "translate(140px, -40px)",
                 },
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              Our mission at Trading Society is to provide high-quality,
-              easy-to-understand Forex education that empowers traders of all
+              Our mission at Trading Society is to provide high quality,
+              easy tou nderstand Forex education that empowers traders of all
               levels. We aim to build a strong, collaborative community where
               traders can share insights, learn from each other, and grow in a
               supportive environment.
@@ -122,7 +124,7 @@ function MissionAndVision() {
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "center",
-                gap: { xs: "10px", md: "20px" },
+                gap: { xs: "10px", md: "5px" },
                 mb: { xs: "20px", md: "40px" },
               }}
             >
@@ -142,31 +144,16 @@ function MissionAndVision() {
                   transform: { xs: "translateX(0)", md: "translateX(-60px)" },
                 }}
               >
-                 <Typography
-                  variant="body2"
+                <motion.img
+                  src={vision}
                   sx={{
-                    width: "264px",
-                    // height: "100%",
-                    fontSize: "40px",
-                    textTransform: "capitalize",
-                    letterSpacing: "15px",
-                    lineHeight: "72.27px",
+                    width: { xs: "80%", md: "100%" },
+                    height: "100%",
                   }}
-                >
-                  <Typography
-                    component="span"
-                    sx={{
-                      color: "#ecbc56",
-                      fontSize: "60px",
-                      letterSpacing: "15px",
-                      lineHeight: "72.27px",
-                      fontWeight:'600'
-                    }}
-                  >
-                    V
-                  </Typography>
-                  ission
-                </Typography>
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                />
               </Box>
             </Box>
             <Typography
