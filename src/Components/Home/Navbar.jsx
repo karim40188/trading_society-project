@@ -65,7 +65,7 @@ function Navbar() {
     {
       name: "LOGIN",
       path: "/login",
-      subLinks: ["Sub Login 1", "Sub Login 2", "Sub Login 3", "Sub Login 4"],
+      subLinks: [], // لا نريد روابط فرعية لهذا الرابط
     },
     {
       name: "JOIN US",
@@ -104,7 +104,7 @@ function Navbar() {
         sx={{
           position: scrolling ? "fixed" : "fixed",
           background: "#000000",
-          maxWidth: scrolling ? { xs: "100%", md: "91%" } : "100%",
+          maxWidth: "100%",
           height: "80px",
           zIndex: "9999",
           transition: "300ms all ease",
@@ -114,7 +114,6 @@ function Navbar() {
           display: "flex",
           justifyContent: "center",
           padding: { xs: "0 20px", md: "0 350px" }, // تعديل padding للشاشات الصغيرة
-          transform: scrolling ? { xs: "0", md: "translateX(-4%)" } : "0",
           top: "0",
         }}
       >
@@ -122,7 +121,10 @@ function Navbar() {
         <motion.div
           className="overlay"
           initial={{ opacity: 0, y: -50 }} // نقطة البداية
-          animate={{ opacity: overlayVisible ? 1 : 0, y: overlayVisible ? 0 : -50 }} // الحركة عند العرض والإخفاء
+          animate={{
+            opacity: overlayVisible ? 1 : 0,
+            y: overlayVisible ? 0 : -50,
+          }} // الحركة عند العرض والإخفاء
           transition={{ duration: 0.5, ease: "easeInOut" }} // إعدادات الانتقال
           style={{
             position: "absolute",
@@ -141,10 +143,11 @@ function Navbar() {
           {hoveredLink && (
             <Box
               sx={{
-                padding: "10px",
+                padding: "20px",
                 fontSize: "22px",
                 display: "flex",
-                gap: "30px",
+                flexDirection: "column", // ترتيب العناصر تحت بعضها
+                gap: "15px", // الفجوة بين النصوص
               }}
             >
               {links
@@ -158,6 +161,12 @@ function Navbar() {
                       padding: "5px 0",
                       color: "#fff",
                       textDecoration: "none",
+                      fontWeight: "bold", // جعل النص غامق
+                      textAlign: "center", // مركز النص
+                      transition: "color 0.3s ease", // تأثير عند التحويم
+                      "&:hover": {
+                        color: "#ecbc56", // تغيير اللون عند التحويم
+                      },
                     }}
                   >
                     {subLink}
@@ -216,7 +225,7 @@ function Navbar() {
                   to={link.path}
                   className="link"
                   onMouseEnter={() => {
-                    if (link.name !== "JOIN US") {
+                    if (link.name !== "JOIN US" && link.name !== "LOGIN") { // عدم إظهار overlay عند LOGIN
                       handleMouseEnter(link.name);
                     }
                   }}
@@ -261,7 +270,12 @@ function Navbar() {
         </Toolbar>
 
         {/* Drawer for mobile */}
-        <Drawer anchor="left" open={isOpen} onClose={handleToggle} sx={{zIndex:'9999999'}}>
+        <Drawer
+          anchor="left"
+          open={isOpen}
+          onClose={handleToggle}
+          sx={{ zIndex: "9999999" }}
+        >
           <Box sx={{ width: 250 }} role="presentation">
             <IconButton onClick={handleToggle}>
               <FaTimes />
