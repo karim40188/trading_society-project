@@ -104,18 +104,17 @@ function Navbar() {
         sx={{
           position: scrolling ? "fixed" : "fixed",
           background: "#000000",
-          maxWidth: scrolling ? "91%" : "100%",
+          maxWidth: scrolling ? { xs: "100%", md: "91%" } : "100%",
           height: "80px",
-          zIndex: "99999999",
+          zIndex: "9999",
           transition: "300ms all ease",
           mx: "auto",
           mb: scrolling ? "0" : "30px",
           backdropFilter: "blur(15.699999809265137px)",
           display: "flex",
           justifyContent: "center",
-          alignItems: "space-between",
-          padding: "0 350px",
-          transform: scrolling ? "translateX(-4%)" : "0",
+          padding: { xs: "0 20px", md: "0 350px" }, // تعديل padding للشاشات الصغيرة
+          transform: scrolling ? { xs: "0", md: "translateX(-4%)" } : "0",
           top: "0",
         }}
       >
@@ -160,10 +159,6 @@ function Navbar() {
                       color: "#fff",
                       textDecoration: "none",
                     }}
-                    onClick={() => {
-                      // يمكنك إضافة توجيه الروابط الفرعية هنا إذا لزم الأمر
-                      console.log(`Navigating to: ${subLink}`);
-                    }}
                   >
                     {subLink}
                   </Link>
@@ -184,8 +179,8 @@ function Navbar() {
               component="img"
               src={logo}
               sx={{
-                maxWidth: "70px",
-                maxHeight: "70px",
+                maxWidth: { xs: "50px", md: "70px" }, // تصغير الشعار للشاشات الصغيرة
+                maxHeight: { xs: "50px", md: "70px" },
                 animation: "fadeIn 0.5s ease",
               }}
             />
@@ -194,7 +189,7 @@ function Navbar() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              gap: "90px",
+              gap: { xs: "20px", md: "90px" }, // تقليص الفجوة بين الروابط للشاشات الصغيرة
               alignItems: "center",
             }}
           >
@@ -203,7 +198,6 @@ function Navbar() {
                 key={link.name}
                 sx={{
                   position: "relative",
-                  // شرط منع ظهور الـ underline لـ "JOIN US"
                   "&:hover": {
                     ...(link.name !== "JOIN US" && {
                       "&:after": {
@@ -221,7 +215,6 @@ function Navbar() {
                 <Link
                   to={link.path}
                   className="link"
-                  // استثناء "JOIN US" من إظهار overlay
                   onMouseEnter={() => {
                     if (link.name !== "JOIN US") {
                       handleMouseEnter(link.name);
@@ -232,8 +225,7 @@ function Navbar() {
                     variant="body2"
                     sx={{
                       color: "#fff",
-                      fontSize: { xs: "20px", xl: "20px" },
-                      animation: "slideIn 0.5s ease",
+                      fontSize: { xs: "16px", md: "20px" }, // تصغير حجم النص للشاشات الصغيرة
                       ...(link.name === "JOIN US" && {
                         background:
                           "linear-gradient(90deg, #D6AA1C 0%, #5D5329 100%)",
@@ -269,7 +261,7 @@ function Navbar() {
         </Toolbar>
 
         {/* Drawer for mobile */}
-        <Drawer anchor="left" open={isOpen} onClose={handleToggle}>
+        <Drawer anchor="left" open={isOpen} onClose={handleToggle} sx={{zIndex:'9999999'}}>
           <Box sx={{ width: 250 }} role="presentation">
             <IconButton onClick={handleToggle}>
               <FaTimes />
