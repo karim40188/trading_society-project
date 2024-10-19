@@ -45,13 +45,12 @@ const Calendar = () => {
     setEventTitle("");
   };
 
+  const totalRows = Math.ceil(
+    (daysInMonth + currentMonth.startOf("month").day()) / 7
+  );
+
   return (
-    <Box
-      sx={{
-        padding: { xs: "5px", md: "20px" },
-        color: "#fff",
-      }}
-    >
+    <Box sx={{ padding: { xs: "5px", md: "20px" }, color: "#fff" }}>
       <Box
         sx={{
           display: "flex",
@@ -139,10 +138,10 @@ const Calendar = () => {
               sx={{
                 margin: "0 10px",
                 color: "#C3AD57",
-                width: { xs: "150px", md: "250px" }, // تحسين العرض على الشاشات الصغيرة
+                width: { xs: "150px", md: "250px" },
                 maxHeight: "80px",
                 fontFamily: "Motken noqta ii",
-                fontSize: { xs: "18px", md: "25px" }, // حجم النص استجابة
+                fontSize: { xs: "18px", md: "25px" },
                 position: "relative",
                 "&::after": {
                   content: '""',
@@ -188,7 +187,7 @@ const Calendar = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  borderRight: index < 6 ? "1px solid #856A30" : "none",
+                  borderRight: index < 6 ? "1px solid #856A30" : "none", // Border right for all except last column
                   borderBottom: "1px solid #856A30",
                   height: { xs: "60px", md: "100px" },
                 }}
@@ -207,18 +206,27 @@ const Calendar = () => {
             )
           )}
 
-      
+          {/* Empty spaces at the start */}
+          {Array.from({ length: currentMonth.startOf("month").day() }).map(
+            (_, index) => (
+              <Box
+                key={index}
+                sx={{
+                  borderRight: "1px solid #856A30",
+                  borderBottom: "1px solid #856A30",
+                  height: { xs: "60px", md: "100px" },
+                }}
+              ></Box>
+            )
+          )}
 
           {/* Display days */}
-          {daysArray.map((day) => (
+          {daysArray.map((day, index) => (
             <Box
               key={day.format("DD")}
               sx={{
-                borderRight:
-                  day.day() === 6 || day.date() === daysInMonth
-                    ? "none"
-                    : "1px solid #856A30", // Remove border-right for the last day
-                borderBottom: "1px solid #856A30",
+                borderRight: (index + currentMonth.startOf("month").day() + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last day in the row
+                borderBottom: index >= (totalRows - 1) * 7 ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
