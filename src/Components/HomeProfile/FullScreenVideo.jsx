@@ -10,14 +10,14 @@ function FullScreenVideo() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        mt:'30px'
+        height: "auto",
+      
       }}
     >
       <video
         src={decodedUrl}
         controls
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        style={{ width: "100%", height: "100%", objectFit: "cover", }}
       />
     </div>
   );

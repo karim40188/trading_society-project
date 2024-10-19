@@ -44,7 +44,7 @@ function Layout2() {
               sx={{
                 // pt: { xs: "20px", md: "10%" },
                 width: sidebarOpen ? { xs: "100%", md: "75%" } : { xs: "100%", md: "90%" },
-                pt:{xs:'25%',md:'8%'},
+                pt:{xs:'25%',md:'7%'},
                 px:'20px',
                 mx: "auto",
                 transition: "width 0.3s ease",

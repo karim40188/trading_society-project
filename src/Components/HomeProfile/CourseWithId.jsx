@@ -10,7 +10,7 @@ import { FaStar } from "react-icons/fa";
 
 function CourseWithId() {
   let [course, setCourse] = useState([]);
-  let [ setErr] = useState(false);
+  let [setErr] = useState(false);
   let { baseUrl } = useContext(DarkModeContext);
   let params = useParams();
   let navigate = useNavigate(); // to navigate to full screen page
@@ -30,31 +30,42 @@ function CourseWithId() {
         setErr(error?.response?.data?.message);
       });
 
+    console.log(res.data.course);
     setCourse(res?.data?.course);
   }
 
   useEffect(() => {
     getCourse(params.id);
-  }, [getCourse, params.id]);
+  }, []);
 
   // Function to handle video click
   const handleVideoClick = (videoUrl) => {
     navigate(`/video/${encodeURIComponent(videoUrl)}`); // navigate to full screen page
   };
 
-
   return (
-    <Box sx={{ padding: 4, mx:'auto' }}>
+    <Box sx={{ padding: 4, mx: "auto" }}>
       {/* تفاصيل الدورة */}
-      <Card sx={{ display: "flex", marginBottom: 4, backgroundColor: "transparent" }}>
-        <CardMedia
-          component="img"
-          sx={{ width: 300 }}
-          image={course?.course_photo}
-          alt={course?.course_title}
-        />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          marginBottom: 4,
+          backgroundColor: "transparent",
+          gap: "20px",
+        }}
+      >
+        <Box sx={{ width: "300px" }}>
+          <Box
+            component="img"
+            sx={{ width: "100%", height: "100%" }}
+            src={course?.course_photo}
+            alt={course?.course_title}
+          />
+        </Box>
+
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent>
+          <Box>
             <Typography variant="h4">{course?.course_title}</Typography>
             <Typography variant="h6" color="text.secondary">
               Category: {course?.category_name}
@@ -68,9 +79,9 @@ function CourseWithId() {
             <Typography variant="body2" color="text.secondary">
               Instructor: {course?.course_instructor_name}
             </Typography>
-          </CardContent>
+          </Box>
         </Box>
-      </Card>
+      </Box>
 
       {/* قائمة الفيديوهات */}
       <Typography variant="h5" sx={{ marginBottom: 2 }}>
@@ -78,7 +89,7 @@ function CourseWithId() {
       </Typography>
       <Grid2 container spacing={2}>
         {course?.course_vedios?.map((video) => (
-          <Grid2 item xs={12} sm={6} md={4} key={video?.id}>
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }} key={video?.id}>
             <Card
               sx={{ cursor: "pointer", backgroundColor: "transparent" }}
               onClick={() => handleVideoClick(video?.video_url)}
@@ -90,7 +101,7 @@ function CourseWithId() {
                   alt={video?.course_name}
                   sx={{
                     width: "100%",
-                    height: "200px",
+                    height: "auto",
                     objectFit: "cover",
                     // borderRadius: "8px",
                   }}
@@ -120,21 +131,18 @@ function CourseWithId() {
                   />
                 </Box>
               </Box>
-              <CardContent sx={{ backgroundColor: "transparent", padding: "16px" }}>
+              <CardContent
+                sx={{ backgroundColor: "transparent", padding: "16px" }}
+              >
                 <Typography variant="h6" sx={{ color: "#fff" }}>
                   {video?.course_name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "gray" }}>
                   {video?.vedio_description}
                 </Typography>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", mt: "8px" }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", mt: "8px" }}>
                   <IoMdTime style={{ color: "#ECBC56" }} />
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "gray", ml: "5px" }}
-                  >
+                  <Typography variant="body2" sx={{ color: "gray", ml: "5px" }}>
                     Duration: {video?.vedio_time} minutes
                   </Typography>
                 </Box>
@@ -142,9 +150,7 @@ function CourseWithId() {
                   Uploaded:{" "}
                   {new Date(video?.vedio_uploaded_at).toLocaleDateString()}
                 </Typography>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", mt: "8px" }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", mt: "8px" }}>
                   {[...Array(5)].map((_, i) => (
                     <FaStar
                       key={i}
