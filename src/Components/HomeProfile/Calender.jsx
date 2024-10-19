@@ -207,22 +207,10 @@ const Calendar = () => {
             )
           )}
 
-          {/* Empty spaces at the start */}
-          {Array.from({ length: currentMonth.startOf("month").day() }).map(
-            (_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  borderRight: "1px solid #856A30",
-                  borderBottom: "1px solid #856A30",
-                  height: { xs: "60px", md: "100px" }, // ارتفاع موحد
-                }}
-              ></Box>
-            )
-          )}
+      
 
           {/* Display days */}
-          {daysArray.map((day, index) => (
+          {daysArray.map((day) => (
             <Box
               key={day.format("DD")}
               sx={{
