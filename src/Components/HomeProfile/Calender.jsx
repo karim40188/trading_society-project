@@ -48,14 +48,14 @@ const Calendar = () => {
   return (
     <Box
       sx={{
-        padding: { xs: "5px", md: "20px" }, // تحسين الحشوة على الشاشات الصغيرة
+        padding: { xs: "5px", md: "20px" },
         color: "#fff",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // تغيير الاتجاه على الشاشات الصغيرة
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           gap: "5px",
           fontSize: "14px",
@@ -66,7 +66,7 @@ const Calendar = () => {
         <Button
           sx={{
             width: "100%",
-            maxWidth: "106px", // تحديد أقصى عرض
+            maxWidth: "106px",
             height: "36px",
             background: "linear-gradient(90deg, #C3AD57 0%, #5D5329 100%)",
             color: "#fff",
@@ -80,7 +80,7 @@ const Calendar = () => {
         <Button
           sx={{
             width: "100%",
-            maxWidth: "106px", // تحديد أقصى عرض
+            maxWidth: "106px",
             height: "36px",
             color: "#fff",
             fontSize: { xs: "12px", md: "14px" },
@@ -94,7 +94,7 @@ const Calendar = () => {
         <Button
           sx={{
             width: "100%",
-            maxWidth: "140px", // تحديد أقصى عرض
+            maxWidth: "140px",
             height: "36px",
             color: "#fff",
             fontSize: { xs: "12px", md: "14px" },
@@ -121,7 +121,7 @@ const Calendar = () => {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "20px",
-            gap: { xs: "10px", md: "30px" }, // تصغير الفجوات على الشاشات الأصغر
+            gap: { xs: "10px", md: "30px" },
           }}
         >
           <IoMdArrowDropleft
@@ -140,7 +140,7 @@ const Calendar = () => {
                 margin: "0 10px",
                 color: "#C3AD57",
                 width: { xs: "150px", md: "250px" }, // تحسين العرض على الشاشات الصغيرة
-                maxHeight:'80px',
+                maxHeight: "80px",
                 fontFamily: "Motken noqta ii",
                 fontSize: { xs: "18px", md: "25px" }, // حجم النص استجابة
                 position: "relative",
@@ -151,7 +151,8 @@ const Calendar = () => {
                   width: "100%",
                   height: "10px",
                   left: "0",
-                  background: 'linear-gradient(90deg, #191919 57.89%, #856A30 100%)',
+                  background:
+                    "linear-gradient(90deg, #191919 57.89%, #856A30 100%)",
                 },
               }}
             >
@@ -176,46 +177,67 @@ const Calendar = () => {
             display: "grid",
             gridTemplateColumns: "repeat(7, 1fr)",
             justifyContent: "center",
-            mt: "20px", // تصغير التباعد العلوي للشاشات الأصغر
-            border: "1px solid #856A30",
-            borderCollapse: "collapse",
+            mt: "20px",
           }}
         >
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <Typography
-              sx={{
-                color: "#C3AD57",
-                fontFamily: "Motken noqta ii",
-                borderBottom: "1px solid #856A30",
-                textAlign: "center",
-                fontSize: { xs: "12px", md: "14px" }, // حجم النص استجابة
-              }}
-              key={day}
-            >
-              {day}
-            </Typography>
-          ))}
+          {["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"].map(
+            (day, index) => (
+              <Box
+                key={day}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRight: index < 6 ? "1px solid #856A30" : "none",
+                  borderBottom: "1px solid #856A30",
+                  height: { xs: "60px", md: "100px" },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#C3AD57",
+                    fontFamily: "Motken noqta ii",
+                    textAlign: "center",
+                    fontSize: { xs: "12px", md: "14px" },
+                  }}
+                >
+                  {day}
+                </Typography>
+              </Box>
+            )
+          )}
 
           {/* Empty spaces at the start */}
           {Array.from({ length: currentMonth.startOf("month").day() }).map(
             (_, index) => (
-              <Box key={index} sx={{ borderBottom: "1px solid #856A30" }}></Box>
+              <Box
+                key={index}
+                sx={{
+                  borderRight: "1px solid #856A30",
+                  borderBottom: "1px solid #856A30",
+                  height: { xs: "60px", md: "100px" }, // ارتفاع موحد
+                }}
+              ></Box>
             )
           )}
 
           {/* Display days */}
-          {daysArray.map((day) => (
+          {daysArray.map((day, index) => (
             <Box
               key={day.format("DD")}
               sx={{
-                border: "1px solid #856A30",
+                borderRight:
+                  day.day() === 6 || day.date() === daysInMonth
+                    ? "none"
+                    : "1px solid #856A30", // Remove border-right for the last day
+                borderBottom: "1px solid #856A30",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 cursor: "pointer",
                 position: "relative",
                 width: "100%",
-                height: { xs: "60px", md: "100px" }, // ضبط الارتفاع للشاشات الصغيرة
+                height: { xs: "60px", md: "100px" },
                 transition: "background-color 0.3s",
                 backgroundColor: events[day.format("YYYY-MM-DD")]
                   ? "#ffcccc"
@@ -226,7 +248,10 @@ const Calendar = () => {
             >
               <Typography
                 variant="body1"
-                sx={{ fontFamily: "Clarendon", fontSize: { xs: "16px", md: "30px" } }} // حجم النص استجابة
+                sx={{
+                  fontFamily: "Clarendon",
+                  fontSize: { xs: "16px", md: "30px" },
+                }}
               >
                 {day.date()}
               </Typography>
