@@ -20,8 +20,8 @@ const Calendar = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const daysInMonth = currentMonth.daysInMonth();
-  const daysArray = Array.from({ length: daysInMonth }, (_, index) =>
-    dayjs(currentMonth).date(index + 1)
+  const totalRows = Math.ceil(
+    (daysInMonth + currentMonth.startOf("month").day()) / 7
   );
 
   const nextMonth = () => {
@@ -44,10 +44,6 @@ const Calendar = () => {
     setOpenDialog(false);
     setEventTitle("");
   };
-
-  const totalRows = Math.ceil(
-    (daysInMonth + currentMonth.startOf("month").day()) / 7
-  );
 
   return (
     <Box sx={{ padding: { xs: "5px", md: "20px" }, color: "#fff" }}>
@@ -207,89 +203,70 @@ const Calendar = () => {
           )}
 
           {/* Display days and empty spaces before the first day */}
-          {Array.from({
-            length: currentMonth.startOf("month").day() + daysInMonth,
-          }).map((_, index) => (
-            <Box
-              key={index}
-              sx={{
-                borderRight:
-                  (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column only
-                borderBottom:
-                  index >= (totalRows - 1) * 7 ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
-                height: { xs: "60px", md: "100px" },
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor:
-                  index >= currentMonth.startOf("month").day()
-                    ? "pointer"
-                    : "default",
-                position: "relative",
-                backgroundColor:
-                  index >= currentMonth.startOf("month").day() &&
-                  events[
-                    dayjs(currentMonth)
-                      .date(index - currentMonth.startOf("month").day() + 1)
-                      .format("YYYY-MM-DD")
-                  ]
-                    ? "#ffcccc"
-                    : "inherit",
-                "&:hover":
-                  index >= currentMonth.startOf("month").day()
-                    ? { backgroundColor: "#C3AD57", color: "#000" }
-                    : {},
-              }}
-              onClick={
-                index >= currentMonth.startOf("month").day()
-                  ? () =>
-                      handleDateClick(
-                        dayjs(currentMonth).date(
-                          index - currentMonth.startOf("month").day() + 1
-                        )
-                      )
-                  : null
-              }
-            >
-              {index >= currentMonth.startOf("month").day() && (
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontFamily: "Clarendon",
-                    fontSize: { xs: "16px", md: "30px" },
-                  }}
-                >
-                  {dayjs(currentMonth)
-                    .date(index - currentMonth.startOf("month").day() + 1)
-                    .date()}
-                </Typography>
-              )}
-              {index >= currentMonth.startOf("month").day() &&
-                events[
-                  dayjs(currentMonth)
-                    .date(index - currentMonth.startOf("month").day() + 1)
-                    .format("YYYY-MM-DD")
-                ] && (
-                  <Box
+          {Array.from({ length: totalRows * 7 }).map((_, index) => {
+            const dayIndex = index - currentMonth.startOf("month").day();
+            const isDay = dayIndex >= 0 && dayIndex < daysInMonth;
+            const isLastRow = Math.floor(index / 7) === totalRows - 1; // Check if the cell is in the last row
+
+            return (
+              <Box
+                key={index}
+                sx={{
+                  borderRight: (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column
+                  borderBottom: isLastRow ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
+                  height: { xs: "60px", md: "100px" },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: isDay ? "pointer" : "default",
+                  position: "relative",
+                  backgroundColor:
+                    isDay &&
+                    events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")]
+                      ? "#ffcccc"
+                      : "inherit",
+                  "&:hover": isDay ? { backgroundColor: "#C3AD57", color: "#000" } : {},
+                }}
+                onClick={
+                  isDay
+                    ? () => handleDateClick(dayjs(currentMonth).date(dayIndex + 1))
+                    : null
+                }
+              >
+                {isDay && (
+                  <Typography
+                    variant="body1"
                     sx={{
-                      position: "absolute",
-                      top: 0,
-                      right: 0,
-                      backgroundColor: "red",
-                      color: "#fff",
-                      borderRadius: "50%",
-                      width: "15px",
-                      height: "15px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      fontFamily: "Clarendon",
+                      fontSize: { xs: "16px", md: "30px" },
                     }}
                   >
-                    !
-                  </Box>
+                    {dayjs(currentMonth).date(dayIndex + 1).date()}
+                  </Typography>
                 )}
-            </Box>
-          ))}
+                {isDay &&
+                  events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        backgroundColor: "red",
+                        color: "#fff",
+                        borderRadius: "50%",
+                        width: "15px",
+                        height: "15px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      !
+                    </Box>
+                  )}
+              </Box>
+            );
+          })}
         </Box>
       </Box>
 
