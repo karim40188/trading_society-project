@@ -11,6 +11,8 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import eventBg from "../../home_profile_assets/event.png";
+import person1 from "../../home_profile_assets/profile_img.png";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -204,69 +206,96 @@ const Calendar = () => {
 
           {/* Display days and empty spaces before the first day */}
           {Array.from({ length: totalRows * 7 }).map((_, index) => {
-            const dayIndex = index - currentMonth.startOf("month").day();
-            const isDay = dayIndex >= 0 && dayIndex < daysInMonth;
-            const isLastRow = Math.floor(index / 7) === totalRows - 1; // Check if the cell is in the last row
+  const dayIndex = index - currentMonth.startOf("month").day();
+  const isDay = dayIndex >= 0 && dayIndex < daysInMonth;
+  const isLastRow = Math.floor(index / 7) === totalRows - 1; // Check if the cell is in the last row
 
-            return (
-              <Box
-                key={index}
-                sx={{
-                  borderRight: (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column
-                  borderBottom: isLastRow ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
-                  height: { xs: "60px", md: "100px" },
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: isDay ? "pointer" : "default",
-                  position: "relative",
-                  backgroundColor:
-                    isDay &&
-                    events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")]
-                      ? "#ffcccc"
-                      : "inherit",
-                  "&:hover": isDay ? { backgroundColor: "#C3AD57", color: "#000" } : {},
-                }}
-                onClick={
-                  isDay
-                    ? () => handleDateClick(dayjs(currentMonth).date(dayIndex + 1))
-                    : null
-                }
-              >
-                {isDay && (
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Clarendon",
-                      fontSize: { xs: "16px", md: "30px" },
-                    }}
-                  >
-                    {dayjs(currentMonth).date(dayIndex + 1).date()}
-                  </Typography>
-                )}
-                {isDay &&
-                  events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        right: 0,
-                        backgroundColor: "red",
-                        color: "#fff",
-                        borderRadius: "50%",
-                        width: "15px",
-                        height: "15px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      !
-                    </Box>
-                  )}
+  return (
+    <Box
+      key={index}
+      sx={{
+        borderRight: (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column
+        borderBottom: isLastRow ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
+        height: { xs: "60px", md: "100px" },
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: isDay ? "pointer" : "default",
+        position: "relative",
+        backgroundColor: isDay && events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")]
+          ? "inherit" // لا تحتاج لتغيير الخلفية إلى الأحمر
+          : "inherit",
+        "&:hover": isDay ? { backgroundColor: "#C3AD57", color: "#000" } : {},
+      }}
+      onClick={
+        isDay
+          ? () => handleDateClick(dayjs(currentMonth).date(dayIndex + 1))
+          : null
+      }
+    >
+      {isDay && (
+        <Typography
+          variant="body1"
+          sx={{
+            fontFamily: "Clarendon",
+            fontSize: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "20px" : "30px", 
+            position: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "absolute" : "static",
+            top: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? 5 : 'auto', 
+            left: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? 5 : 'auto',
+            textAlign: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "left" : "center", 
+            color: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "#CA1A1A" : "#fff",
+          }}
+        >
+          {dayjs(currentMonth).date(dayIndex + 1).date()}
+        </Typography>
+      )}
+      {isDay &&
+        events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%", // Centering it vertically
+              left: "50%", // Centering it horizontally
+              transform: "translate(-50%, -50%)", // Adjusting to center it properly
+            }}
+          >
+            <Box
+              sx={{
+                backgroundImage: `url(${eventBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                objectFit: "cover",
+                width: "91px",
+                height: "30px",
+                borderRadius: "50px",
+                display: "flex",
+                gap: "10px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Box sx={{ width: "23px", height: "23px", borderRadius: "50%" }}>
+                <Box
+                  component="img"
+                  src={person1}
+                  sx={{ width: "100%", height: "100%" }}
+                />
               </Box>
-            );
-          })}
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography sx={{ fontSize: "12px", lineHeight: "10px" }}>
+                  Amr Omar
+                </Typography>
+                <Typography sx={{ fontSize: "12px", lineHeight: "10px" }}>
+                  8:30 pm
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        )}
+    </Box>
+  );
+})}
+
         </Box>
       </Box>
 
@@ -287,6 +316,7 @@ const Calendar = () => {
           <Button onClick={handleAddEvent}>Add</Button>
         </DialogActions>
       </Dialog>
+
     </Box>
   );
 };
