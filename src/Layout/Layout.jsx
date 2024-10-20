@@ -12,6 +12,7 @@ import { LoadingContext } from "../Components/context/Context";
 import CeoMF from "../Components/Home/CeoMF";
 import CeoMH from "../Components/CeoMH";
 import AboutUsText from "../Components/Home/AboutUsText";
+import Subscription from "../Components/HomeProfile/Subscription";
 
 function Layout() {
   let { isLoading } = useContext(LoadingContext);
@@ -71,12 +72,20 @@ function Layout() {
             }}
           >
             <Academy />
-
-            <Box sx={{ width: "91%", mt: "300px", mx: "auto" }}>
-              <OurScanners />
-            </Box>
+            
+          
           </Box>
 
+
+
+       
+          <Box sx={{ width: "91%", mt: "300px", mx: "auto" }}>
+              <OurScanners />
+            </Box>
+      
+            <Box sx={{ width: "91%",  mx: "auto" }}>
+              <Subscription />
+            </Box>
           <Box sx={{ mt: "50px" }}>
             <Footer />
           </Box>
