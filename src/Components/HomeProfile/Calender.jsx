@@ -206,70 +206,88 @@ const Calendar = () => {
             )
           )}
 
-          {/* Empty spaces at the start */}
-          {Array.from({ length: currentMonth.startOf("month").day() }).map(
-            (_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  borderRight: "1px solid #856A30",
-                  borderBottom: "1px solid #856A30",
-                  height: { xs: "60px", md: "100px" },
-                }}
-              ></Box>
-            )
-          )}
-
-          {/* Display days */}
-          {daysArray.map((day, index) => (
+          {/* Display days and empty spaces before the first day */}
+          {Array.from({
+            length: currentMonth.startOf("month").day() + daysInMonth,
+          }).map((_, index) => (
             <Box
-              key={day.format("DD")}
+              key={index}
               sx={{
-                borderRight: (index + currentMonth.startOf("month").day() + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last day in the row
-                borderBottom: index >= (totalRows - 1) * 7 ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
+                borderRight:
+                  (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column only
+                borderBottom:
+                  index >= (totalRows - 1) * 7 ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
+                height: { xs: "60px", md: "100px" },
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor:
+                  index >= currentMonth.startOf("month").day()
+                    ? "pointer"
+                    : "default",
                 position: "relative",
-                width: "100%",
-                height: { xs: "60px", md: "100px" },
-                transition: "background-color 0.3s",
-                backgroundColor: events[day.format("YYYY-MM-DD")]
-                  ? "#ffcccc"
-                  : "inherit",
-                "&:hover": { backgroundColor: "#C3AD57", color: "#000" },
+                backgroundColor:
+                  index >= currentMonth.startOf("month").day() &&
+                  events[
+                    dayjs(currentMonth)
+                      .date(index - currentMonth.startOf("month").day() + 1)
+                      .format("YYYY-MM-DD")
+                  ]
+                    ? "#ffcccc"
+                    : "inherit",
+                "&:hover":
+                  index >= currentMonth.startOf("month").day()
+                    ? { backgroundColor: "#C3AD57", color: "#000" }
+                    : {},
               }}
-              onClick={() => handleDateClick(day)}
+              onClick={
+                index >= currentMonth.startOf("month").day()
+                  ? () =>
+                      handleDateClick(
+                        dayjs(currentMonth).date(
+                          index - currentMonth.startOf("month").day() + 1
+                        )
+                      )
+                  : null
+              }
             >
-              <Typography
-                variant="body1"
-                sx={{
-                  fontFamily: "Clarendon",
-                  fontSize: { xs: "16px", md: "30px" },
-                }}
-              >
-                {day.date()}
-              </Typography>
-              {events[day.format("YYYY-MM-DD")] && (
-                <Box
+              {index >= currentMonth.startOf("month").day() && (
+                <Typography
+                  variant="body1"
                   sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    backgroundColor: "red",
-                    color: "#fff",
-                    borderRadius: "50%",
-                    width: "15px",
-                    height: "15px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    fontFamily: "Clarendon",
+                    fontSize: { xs: "16px", md: "30px" },
                   }}
                 >
-                  !
-                </Box>
+                  {dayjs(currentMonth)
+                    .date(index - currentMonth.startOf("month").day() + 1)
+                    .date()}
+                </Typography>
               )}
+              {index >= currentMonth.startOf("month").day() &&
+                events[
+                  dayjs(currentMonth)
+                    .date(index - currentMonth.startOf("month").day() + 1)
+                    .format("YYYY-MM-DD")
+                ] && (
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      backgroundColor: "red",
+                      color: "#fff",
+                      borderRadius: "50%",
+                      width: "15px",
+                      height: "15px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    !
+                  </Box>
+                )}
             </Box>
           ))}
         </Box>
