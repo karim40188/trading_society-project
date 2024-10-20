@@ -83,7 +83,7 @@ function Layout() {
               <OurScanners />
             </Box>
       
-            <Box sx={{ width: "91%",  mx: "auto" }}>
+            <Box sx={{ width: "91%", mt:"50px", mx: "auto" }}>
               <Subscription />
             </Box>
           <Box sx={{ mt: "50px" }}>
