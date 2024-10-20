@@ -27,6 +27,7 @@ import OnlineSessions from "./Components/HomeProfile/OnlineSessions";
 import Categories from "./Components/HomeProfile/Categories";
 import FullScreenVideo from "./Components/HomeProfile/FullScreenVideo";
 import Leaderboard from "./Components/HomeProfile/Leaderboard";
+import Subscription from "./Components/HomeProfile/Subscription";
 
 function App() {
   let { setLoading } = useContext(LoadingContext);
@@ -109,6 +110,7 @@ function App() {
         { path: "/categories", element: <Categories /> },
         { path: "/video/:videoUrl", element: <FullScreenVideo /> },
         { path: "/leaderboard", element: <Leaderboard /> },
+        { path: "/subscription", element: <Subscription /> },
       ],
     },
     { path: "/register", element: <Register /> },
